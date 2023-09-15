@@ -1,1 +1,1 @@
-changes from github
+this change from local should cause a conflict
