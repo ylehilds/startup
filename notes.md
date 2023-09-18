@@ -39,7 +39,7 @@ simon.myfunkychickens.click {
    header Access-Control-Allow-Origin *
 }
 ```
-* Restart Caddy so that your changes take effect. Note that since this requires you nto use sudo to elevate your user to have the rights to restart the gateway.
+* Restart Caddy so that your changes take effect. Note that since this requires you to use sudo to elevate your user to have the rights to restart the gateway.
 ```
 sudo service caddy restart
 ```
