@@ -43,3 +43,7 @@ simon.myfunkychickens.click {
 ```
 sudo service caddy restart
 ```
+* copy from local to server:
+  ```
+  scp -i <pem_file_location> <src_location_file> ubuntu@<public_ipaddress>:public_html/<either_leave_blank_or_rename_file>
+  ```
