@@ -6,7 +6,7 @@
 My fitness plan app is a fitness tracking app that allows users to:
 1. Plan & log their workouts with easy user experience by allowing users to plan workouts in advance and add/edit workouts as to keep track of them.
 2. Track progress by looking at a chart
-3. Set fitness goals including create healthy meals list for easy grocery shopping, set weight goals, get list of fitness articles and motivational quotes to keep you going.
+3. Set fitness goals including create healthy meals list for easy grocery shopping, set weight goals, display motivational quotes to keep you going.
 
 ### Key Features
 
@@ -19,7 +19,7 @@ My fitness plan app is a fitness tracking app that allows users to:
 * Ability for users to create, delete, report  workouts and fitness goals
 * Ability to track workouts, weight loss
 * Ability to create lists of healthy meals for easy grocery shopping list.
-* Suggested motivational quotes and articles
+* Suggested motivational quotes
 
 ### Technologies
 * HTML: 
