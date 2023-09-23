@@ -7,7 +7,7 @@ My fitness plan app is a fitness tracking app that allows users to plan & log th
 
 Have you ever been at a grocery store and by default just buying what you have always bought, potentially/usually junk food? This app will enable users to create healthy meals list, so that when you go to the grocery store you will have a good idea what items you should get. 
 
-A key fitness is to keep users motivated, this app will display motivational quotes with the hope to keep users motivated to stick with their goals. 
+A key fitness strategy is to keep users motivated, this app will display motivational quotes to keep them motivated and stick with their fitness goals.
 
 In summary the main goal is to enable users to plan and track workout efforts, create healthy recipes meals list as to influence purchase of healthy food and live a healthy lifestyle!
 ### Designs
