@@ -22,7 +22,6 @@ myfunkychickens.click {
    header -server
    }
 
-
 startup.myfunkychickens.click {
    reverse_proxy * localhost:4000
    header Cache-Control no-store
@@ -47,3 +46,4 @@ sudo service caddy restart
   ```
   scp -i <pem_file_location> <src_location_file> ubuntu@<public_ipaddress>:public_html/<either_leave_blank_or_rename_file>
   ```
+* Startup Websockets potential & future implementation: motivational quotes and/or most popular receipes top 10.
