@@ -1,3 +1,5 @@
+# There are 2 Project proposition here (MyFitnessPlan & QuizMaker) Please give feedback whether both of them can work and I will make the decision before the next assignments and update the Readme to only contain one project. Thank you!
+
 # My Fitness Plan
 ## Description Deliverable
 
@@ -73,6 +75,75 @@ I will be using the below technologies in the following ways:
 * Login: Register & login users. Secure secrets in database / use 3rd party tools. User can only interact with website after successful login.
 * WebSocket: Each user will receive motivatioanl quotes coming from server w/out asking for it
 * React: Application will be then ported to React framework.
+
+---------------------------------------------------------------------------------------------------------
+
+# Quiz Maker
+## Description Deliverable
+
+### Elevator Pitch
+
+Have you ever been stressed out for a test and there is too much to learn for the test? Start small quizzing yourself on the subject matter one question at a time, once you create a quiz deck and get all the questions right, you will feel relieved that you got the correct knowledge to ace that test.
+
+Quiz Maker is a fun application that lets you build an online quiz platform where users can create quizzes, take quizzes, and view their scores. Each user will have their own account behind authentication. All the quizzes and answers will be stored in a database, so go ahead and start today creating and taking quizzes, the result of each quiz will  update your scores real-time.
+
+### Designs
+
+#### Login
+<!-- ![Login](/images/quizLogin.png) -->
+<img src="./images/quizLogin.png" width="600" height="400">
+
+#### Dashboard
+<!-- ![Commitment](/images/quizDashboard.png) -->
+<img src="./images/quizDashboard.png" width="600" height="400">
+
+#### Dashboard
+<!-- ![Commitment](/images/quizCreate.png) -->
+<img src="./images/quizCreate.png" width="600" height="400">
+
+#### Dashboard
+<!-- ![Commitment](/images/quizEdit.png) -->
+<img src="./images/quizEdit.png" width="600" height="400">
+
+#### Scoreboard
+<!-- ![Dashboard](/images/quizScoreboard.png) -->
+<img src="./images/quizScoreboard.png" width="600" height="400">
+
+#### Add/Edit Workout
+<!-- ![Add/Edit Workout](/images/addEdit.png) -->
+<img src="./images/quizAbout.png" width="600" height="400">
+
+
+### Key Features
+
+* Secure login over HTTPS
+* Ability to create quizzes
+* Ability to edit quizzes
+* Ability to take any quizzes created in the system
+* Ability as a creator of a quiz to give points to a given question
+* Quizzes are persistently stored
+* A scoreboard will list all scores real-time
+
+### Technologies
+
+I will be using the below technologies in the following ways:
+
+* HTML: A few web pages to display & create quizzes, navigation links from one page to another
+* CSS: Style web pages and make it more user friendly, good spacing between elements, readability, and mobile friendly.
+* Javascript: logic to enable user to perform actions on each web page. 
+* Service: Backend API rest service:
+  * login
+  * get/add/edit/delete quizzes
+  * get/add/edit/delete questions points if creator of the quiz
+  * submit quiz score
+  * get scoreboard data
+  * get dashboard data
+  * get about data
+* DB: store user scores in long term storage
+* Login: Register & login users. Secure secrets in database / use 3rd party tools. User can only interact with website after successful login.
+* WebSocket: User's activities and scores will be updated real-time coming from server w/out client asking for it
+* React: Application will be then ported to React framework.
+
 
 [Notes link](notes.md)
 
