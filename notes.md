@@ -4,7 +4,7 @@
 * I have also learned how to use GitLens from VS code to visually see git changes
 ## SSH Login
 * my ip address for CS260 class is: http://54.85.34.16
-* the remote command to sign in is: ssh -i cs260.pem ubuntu@54.85.34.16
+* the remote command to sign in is: ssh -i ~/keys/cs260/cs260.pem ubuntu@54.85.34.16
 * AWS Route53 is where to purchase and regster a domain
 ## AWS linking ip address with domain name
 * Crete an "A" record and give the public ipaddress. This is the root domain name and how you link/glue the website name and the public ip address. for example: cs260.click with value 18.224.126.40
@@ -47,3 +47,8 @@ sudo service caddy restart
   scp -i <pem_file_location> <src_location_file> ubuntu@<public_ipaddress>:public_html/<either_leave_blank_or_rename_file>
   ```
 * Startup Websockets potential & future implementation: motivational quotes and/or most popular receipes top 10.
+
+## Deply Files (the deploy script is different in each lab, so pay attention to that!)
+* my ip address for CS260 class is: http://54.85.34.16
+* the remote command to deploy is: ./deployFiles.sh -k ~/keys/cs260/cs260.pem -h quizmaker.click -s simon
+
