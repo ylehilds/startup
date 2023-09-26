@@ -48,7 +48,7 @@ sudo service caddy restart
   ```
 * Startup Websockets potential & future implementation: motivational quotes and/or most popular receipes top 10.
 
-## Deply Files (the deploy script is different in each lab, so pay attention to that!)
+## Deploy Files (the deploy script is different in each lab, so pay attention to that!)
 * my ip address for CS260 class is: http://54.85.34.16
 * the remote command to deploy is: ./deployFiles.sh -k ~/keys/cs260/cs260.pem -h quizmaker.click -s simon
 
