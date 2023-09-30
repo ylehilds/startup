@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <!-- Tell browsers not to scale the viewport automatically -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Maker</title>
-    <link rel="icon" href="favicon.ico" />
+    <link rel="icon" href="favicon.ico">
   </head>
   <body>
     <!-- Use header, main, and footer elements to give semantic structure -->
@@ -26,7 +26,7 @@
       </nav>
 
       <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-      <hr />
+      <hr>
     </header>
 
     <main>
@@ -36,32 +36,37 @@
       </div>
 
       <!-- More formatting with old style HTML -->
-      <br />
+      <br>
 
       <div>
         <label for="count">Score</label>
-        <input type="text" id="count" value="--" readonly />
+        <input type="text" id="count" value="--" readonly >
       </div>
 
-      <br />
+      <br>
 
       <div>
+        <div><label for="quizTitle">Quiz Title:</label><input type="text" id="quizTitle" name="quizTitle"></div>
+        <br>
         <fieldset>
           <legend>Create Quiz</legend>
           <div>Question 1: <input type="textarea" placeholder="My Quiz Question 1"/></div>
+          <br>
+          <div>Please select 1 correct answer</div>
+          <br>
           <div>Answer 1   <input type="radio" id="a1" name="answer" value="a1" /><label for="a1">My Answer 1</label></div>
           <div>Answer 2   <input type="radio" id="a2" name="answer" value="a2" checked /><label for="a2">Correct Answer</label></div>
           <div>Answer 3   <input type="radio" id="a3" name="answer" value="a3" /><label for="a3">My Answer 3</label></div>
           <div>Answer 4   <input type="radio" id="a4" name="answer" value="a4" /><label for="a4">My Answer 4</label></div>
         </fieldset>
       </div>
-      <div><button>Save</button><button>Next</button><button>Cancel</button></div>
+      <div><button>Save</button> <button>Next</button> <button>Cancel</button></div>
     </main>
 
     <footer>
-      <hr />
+      <hr>
       <span class="text-reset">Lehi Alcantara</span>
-      <br />
+      <br>
       <a href="https://github.com/ylehilds/startup">GitHub</a>
     </footer>
   </body>
