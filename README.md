@@ -64,6 +64,17 @@ I will be using the below technologies in the following ways:
 * WebSocket: User's activities and scores will be updated real-time coming from server w/out client asking for it
 * React: Application will be then ported to React framework.
 
+## HTML deliverable
+
+For this deliverable I built out the structure of my application using HTML.
+
+- **HTML pages** - A few HTML pages that represent the ability to login create/edit/take a quiz.
+- **Links** - The login page automatically links to the quiz dashboard page.
+- **Text** - Each page contains dummy data to create/edit/take a quiz, represented by a textual description.
+- **Images** - Added an image for both About page as well as for the facicon.ico.
+- **Login** - Input box and submit button for Sign in and sign out.
+- **Database** - The scores page represent data pulled from the database.
+- **WebSocket** - While taking a quiz, a display of user activities/scores taking quizzes represent the users activity realtime.
 
 [Notes link](notes.md)
 
