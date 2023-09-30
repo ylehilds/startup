@@ -71,8 +71,9 @@ For this deliverable I built out the structure of my application using HTML.
 - **HTML pages** - A few HTML pages that represent the ability to login create/edit/take a quiz.
 - **Links** - The login page automatically links to the quiz dashboard page.
 - **Text** - Each page contains dummy data to create/edit/take a quiz, represented by a textual description.
+- **3rd party service calls** - Located on the about page, it will be a dynamic motivational quote.
 - **Images** - Added an image for both About page as well as for the facicon.ico.
-- **Login** - Input box and submit button for Sign In and Sign Out.
+- **Login** - Input box and submit button for Sign In and Sign Out and displays username.
 - **Database** - The scores page represent data pulled from the database.
 - **WebSocket** - While taking a quiz, a display of user activities/scores taking quizzes represent the users activity realtime.
 
