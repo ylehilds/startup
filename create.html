@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Tell browsers not to scale the viewport automatically -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simon</title>
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <!-- Use header, main, and footer elements to give semantic structure -->
+    <header>
+      <h1>Simon<sup>&reg;</sup></h1>
+
+      <!-- Navigation elements -->
+      <nav>
+        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
+        <menu>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="quiz.html">Take Quiz</a></li>
+          <li><a href="create.html">Create/Edit</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="about.html">About</a></li>
+        </menu>
+      </nav>
+
+      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
+      <hr />
+    </header>
+
+    <main>
+      <div class="players">
+        Welcome
+        <span class="player-name">Lehi</span>
+      </div>
+
+      <!-- More formatting with old style HTML -->
+      <br />
+
+      <div>
+        <label for="count">Score</label>
+        <input type="text" id="count" value="--" readonly />
+      </div>
+
+      <br />
+
+      <div>
+        <fieldset>
+          <legend>Create Quiz</legend>
+          <div>Question 1: <input type="textarea" placeholder="My Quiz Question 1"/></div>
+          <div>Answer 1   <input type="radio" id="a1" name="answer" value="a1" /><label for="a1">My Answer 1</label></div>
+          <div>Answer 2   <input type="radio" id="a2" name="answer" value="a2" checked /><label for="a2">My Answer 2</label></div>
+          <div>Answer 3   <input type="radio" id="a3" name="answer" value="a3" /><label for="a3">My Answer 3</label></div>
+          <div>Answer 4   <input type="radio" id="a4" name="answer" value="a4" /><label for="a4">My Answer 4</label></div>
+        </fieldset>
+      </div>
+      <div><button>Save</button><button>Next</button><button>Cancel</button></div>
+    </main>
+
+    <footer>
+      <hr />
+      <span class="text-reset">Lehi Alcantara</span>
+      <br />
+      <a href="https://github.com/ylehilds/startup">GitHub</a>
+    </footer>
+  </body>
+</html>
