@@ -52,3 +52,150 @@ sudo service caddy restart
 * my ip address for CS260 class is: http://54.85.34.16
 * the remote command to deploy is: ./deployFiles.sh -k ~/keys/cs260/cs260.pem -h quizmaker.click -s simon
 
+## CSS Flexbox
+* basic html page skeleton:
+```html
+<body>
+  <header>
+    <h1>CSS flex &amp; media query</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Controls</h2>
+    </section>
+    <section>
+      <h2>Content</h2>
+    </section>
+  </main>
+  <footer>
+    <h2>Footer</h2>
+  </footer>
+</body>
+```
+* basic styling:
+```css
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100vh;
+}
+
+header {
+  flex: 0 80px;
+  background: hsl(223, 57%, 38%);
+}
+
+footer {
+  flex: 0 30px;
+  background: hsl(180, 10%, 10%);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+```
+
+* media queries syntax:
+```css
+@media (orientation: portrait) {
+  main {
+    flex-direction: column;
+  }
+}
+
+@media (max-height: 700px) {
+  header {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+}
+```
+
+## CSS Frameworks
+* Adding bootstrap:
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    ...
+  </body>
+</html>
+```
+
+```html
+<body>
+  ...
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"
+  ></script>
+</body>
+```
+
+
+## CSS Practice
+* Animation:
+```css
+p {
+  text-align: center;
+  font-size: 20vh;
+}
+```
+
+```css
+p {
+  text-align: center;
+  font-size: 20vh;
+
+  animation-name: demo;
+  animation-duration: 3s;
+}
+```
+
+```css
+@keyframes demo {
+  from {
+    font-size: 0vh;
+  }
+
+  to {
+    font-size: 20vh;
+  }
+}
+```
+
+```css
+@keyframes demo {
+  from {
+    font-size: 0vh;
+  }
+
+  95% {
+    font-size: 21vh;
+  }
+
+  to {
+    font-size: 20vh;
+  }
+}
+```
+
+
+
+
