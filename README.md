@@ -82,8 +82,8 @@ For this deliverable I built out the structure of my application using HTML.
 
 For this deliverable I properly styled the application into its final appearance.
 
-- **Header, footer, and main content body** - Styled all sections.
-- **Navigation elements** - modified the theme colors as well as coded dark/light theme. Used bootstrap to get many styles and my own as well.
+- **Header, footer, and main content body** - Styled all sections, created a few stylesheets to accomplish that.
+- **Navigation elements** - Created pages edit/take/create all accessible from Home page. Modified the theme colors as well as coded dark/light theme. Used bootstrap to get many styles and my own as well.
 - **Responsive to window resizing** - The application looks great on both desktop and mobile devices.
 - **Application elements** - Used good contrast and whitespace.
 - **Application text content** - Consistent font (sans-serif).
