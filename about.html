@@ -5,47 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Maker</title>
     <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="about.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
   <body>
-    <header>
-      <h1>Quiz Maker<sup>&reg;</sup></h1>
+    <header class="container-fluid">
+      <!-- <h1>Quiz Maker<sup>&reg;</sup></h1> -->
 
-      <nav>
-        <menu>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="quiz.html">Take Quiz</a></li>
-          <li><a href="create.html">Create/Edit</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="about.html">About</a></li>
+      <nav class="navbar fixed-top">
+        <a class="navbar-brand" href="index.html">Quiz Maker<sup>&reg;</sup></a>
+        <menu class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="dashboard.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="create.html">Quiz</a></li>
+          <li class="nav-item"><a class="nav-link" href="scores.html">Scores</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
         </menu>
+
+        <!-- Default switch -->
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+        </div>
+
       </nav>
 
-      <hr>
+      <!-- <hr> -->
     </header>
 
-    <main>
-      <div id="picture" class="picture-box"><img width="200px" src="./images/quizMakerLogo.png" alt="random" /></div>
+    <main class="main-about container-fluid bg-secondary">
+      <div id="picture" class="picture-box"><img src="./images/quizMakerLogo.png" alt="random" /></div>
 
-      <p>
+      <p class="float-left">
         Have you ever been stressed out for a test and there is too much to learn for the test? Start small quizzing yourself on the subject matter one question at a time, once you create a quiz deck and get all the questions right, you will feel relieved that you got the correct knowledge to ace that test.
       </p>
 
-      <p>
+      <p class="float-left">
         Quiz Maker is a fun application that lets you build an online quiz platform where users can create quizzes, take quizzes, and view their scores. Each user will have their own account behind authentication. All the quizzes and answers will be stored in a database, so go ahead and start today creating and taking quizzes, the result of each quiz will update your scores real-time.
       </p>
 
-      <div id="quote">
-        <div>The only way to do great work is to love what you do.</div>
-        <div>- Steve Jobs</div>
+      <div id="quote" class="quote-box text-reset float-left bg-body">
+        <div class="quote">The only way to do great work is to love what you do.</div>
+        <div class="author">Steve Jobs</div>
       </div>
     </main>
 
     <footer>
-      <hr>
+      <div class="container-fluid">
       <span class="text-reset">Lehi Alcantara</span>
-      <br>
-      <a href="https://github.com/ylehilds/startup">GitHub</a>
+      <a class="text-reset" href="https://github.com/ylehilds/startup">GitHub</a>
+      </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="./theme.js" crossorigin="anonymous"></script>
   </body>
 </html>
