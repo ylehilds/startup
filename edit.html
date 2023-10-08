@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Maker</title>
     <link rel="icon" href="favicon.ico">
-    
-    <link rel="stylesheet" href="quiz.css" />
+    <link rel="stylesheet" href="create.css" />
     <link rel="stylesheet" href="main.css" />
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -15,13 +14,14 @@
   <body>
     <!-- Use header, main, and footer elements to give semantic structure -->
     <header class="container-fluid">
+
       <!-- Navigation elements -->
       <nav class="navbar fixed-top">
-        <a class="navbar-brand" href="index.html">Quiz Maker<sup>&reg;</sup></a>
+        <a class="navbar-brand" href="index.html">Quiz Maker<sup>&reg;</sup></a>        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
           <menu class="navbar-nav">
             <li class="nav-item"><a class="nav-link active" href="dashboard.html">Home</a></li>
-            <!-- <li class="nav-item"><a class="nav-link" href="create.html">Quiz</a></li> -->
+            <li class="nav-item"><a class="nav-link" href="create.html">Quiz</a></li>
             <li class="nav-item"><a class="nav-link" href="scores.html">Scores</a></li>
             <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           </menu>
@@ -31,7 +31,6 @@
           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
           <label class="form-check-label" for="flexSwitchCheckDefault"></label>
         </div>
-
       </nav>
 
       <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
@@ -39,41 +38,44 @@
     </header>
 
     <main class="main-quiz container-fluid text-center">
+      <!-- <div class="players">
+        Welcome
+        <span class="player-name">Lehi</span>
+      </div> -->
+
       <!-- More formatting with old style HTML -->
       <br>
 
-      <div>
+      <div class="quiz-frame">
+        <!-- <label for="count">Score</label>
+        <input class="form-control" type="text" id="count" value="--" readonly >
+       -->
+      <br>
+
+      
+        <div><label for="quizTitle">Quiz Title:</label><input class="form-control" type="text" id="quizTitle" name="quizTitle"></div>
+        <br>
         <fieldset>
-          <legend>Quiz "X"</legend>
-          <div>Question 1</div>
+          <legend>Edit Quiz</legend>
+          <div>Question 1: <input class="form-control" type="textarea" placeholder="My Quiz Question 1"/></div>
+          <br>
+          <div>Please select 1 correct answer</div>
+          <br>
           <div class="form-check">
-            <input class="form-check-input float-none" type="radio" id="a1" name="answer" value="a1" /> <label class="form-check-label" for="a1">My Answer 1</label>
+            <input class="form-check-input float-none" type="radio" id="a1" name="answer" value="a1" /> <label for="a1">My Answer 1</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input float-none" type="radio" id="a2" name="answer" value="a2" checked /> <label class="form-check-label" for="a2">My Answer 2</label>
+            <input class="form-check-input float-none"type="radio" id="a2" name="answer" value="a2" checked /> <label for="a2">My Answer 2</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input float-none" type="radio" id="a3" name="answer" value="a3" /> <label class="form-check-label" for="a3">My Answer 3</label>
+            <input class="form-check-input float-none" type="radio" id="a3" name="answer" value="a3" /> <label for="a3">My Answer 3</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input float-none" type="radio" id="a4" name="answer" value="a4" /> <label class="form-check-label" for="a4">My Answer 4</label>
+            <input class="form-check-input float-none" type="radio" id="a4" name="answer" value="a4" /> <label for="a4">My Answer 4</label>
           </div>
         </fieldset>
       </div>
-      <br>
-      <div><button class="btn btn-primary text-reset">Previous</button> <button class="btn btn-primary text-reset">Next</button class="btn btn-primary text-reset"> <button class="btn btn-primary text-reset">Submit</button></div>
-      <br>
-      <br>
-      <div id="players-actions">
-        <label for="count">Score</label>
-        <input class="form-control" type="text" id="count"  value="--" readonly />
-        <br>
-        <ul class="list-group">
-          <li class="list-group-item">Tom started a new quiz</li>
-          <li class="list-group-item">Jennifer started a new quiz</li>
-          <li class="list-group-item">Tom scored 7</li>
-        </ul>
-      </div>
+      <div><button class="btn btn-primary text-reset">Save</button> <button class="btn btn-primary text-reset">Next</button> <button class="btn btn-primary text-reset">Cancel</button></div>
     </main>
 
     <footer>
