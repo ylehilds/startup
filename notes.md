@@ -196,6 +196,78 @@ p {
 }
 ```
 
+## Startup CSS
+* Adding toggle between dark and light themes in bootstrap:
+```javascript
+document.getElementById('flexSwitchCheckDefault').addEventListener('change', () => {
+    if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+        document.documentElement.setAttribute('data-bs-theme', 'light')
+        document.querySelector('main').style.backgroundColor = 'LightGrey';
+    } 
+    else {
+        document.documentElement.setAttribute('data-bs-theme', 'dark')
+        document.querySelector('main').style.backgroundColor = 'DarkSlateGrey';
+    }
+})
+// the below line is to default the theme to dark
+document.querySelector('main').style.backgroundColor = 'DarkSlateGrey';
+```
 
+* Basic CSS styling
+```css
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 375px;
+}
 
+header {
+  flex: 0 80px;
+}
 
+main {
+  flex: 1 calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-family: sans-serif;
+}
+
+footer {
+  flex: 0 30px;
+}
+
+menu {
+  flex: 1;
+  display: flex;
+  /*  overwrite Bootstrap so the menu does not wrap */
+  flex-direction: row !important;
+  list-style: none;
+}
+
+.navbar-brand {
+  padding-left: 0.3em;
+  border-bottom: solid rgb(182, 182, 182) thin;
+}
+
+menu .nav-item {
+  padding: 0 0.3em;
+}
+
+footer a {
+  float: right;
+}
+
+@media (max-height: 600px) {
+  header {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+  main {
+    flex: 1 100vh;
+  }
+}
+```

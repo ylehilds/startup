@@ -1,70 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <!-- Tell browsers not to scale the viewport automatically -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Maker</title>
-    <link rel="icon" href="favicon.ico">
-  </head>
-  <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
-    <header>
-      <h1>Quiz Maker<sup>&reg;</sup></h1>
+<html lang="en" data-bs-theme="dark">
 
-      <!-- Navigation elements -->
-      <nav>
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
-        <menu>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="quiz.html">Take Quiz</a></li>
-          <li><a href="create.html">Create/Edit</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="about.html">About</a></li>
-        </menu>
-      </nav>
+<head>
+  <meta charset="UTF-8">
+  <!-- Tell browsers not to scale the viewport automatically -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Maker</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="dashboard.css" />
 
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-      <hr>
-    </header>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
 
-    <main>
-      <div class="players">
-        Welcome
-        <span class="player-name">Lehi</span>
+<body>
+  <!-- Use header, main, and footer elements to give semantic structure -->
+  <header class="container-fluid">
+    <!-- <h1>Quiz Maker<sup>&reg;</sup></h1> -->
+
+    <!-- Navigation elements -->
+    <nav class="navbar fixed-top">
+      <a class="navbar-brand" href="index.html">Quiz Maker<sup>&reg;</sup></a>
+
+      <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
+      <menu class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="dashboard.html">Home</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" href="create.html">Quiz</a></li> -->
+        <li class="nav-item"><a class="nav-link" href="scores.html">Scores</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      </menu>
+      <!-- Default switch -->
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
       </div>
 
-      <!-- More formatting with old style HTML -->
+    </nav>
+
+    <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
+    <!-- <hr> -->
+  </header>
+
+  <main class="main-dashboard container-fluid">
+    <div class="players">
+      Welcome
+      <span class="player-name">Lehi</span>
+    </div>
+
+    <!-- More formatting with old style HTML -->
+    <br>
+
+    <div class="player-score">
+      <label for="count">Score</label>
+      <input type="text" id="count" value="--" readonly />
+    </div>
+
+    <br>
+
+    <div>
+      <form method="get" action="create.html">
+        <button class="btn btn-primary text-reset">Create Quiz</button>
+      </form>
       <br>
+      <fieldset>
+        <legend>Quiz List</legend>
+        <div class="quiz-list">
+          <div class="list-container"><span>Quiz 1</span><button onclick="window.location='quiz.html';" class="btn btn-primary text-reset">Take</button><button
+            onclick="window.location='edit.html';"  class="btn btn-primary text-reset">Edit</button><button class="btn btn-primary text-reset">Delete</button>
+          </div><br>
+          <div class="list-container"><span>Quiz 2</span><button onclick="window.location='quiz.html';" class="btn btn-primary text-reset">Take</button><button
+            onclick="window.location='edit.html';"  class="btn btn-primary text-reset">Edit</button><button class="btn btn-primary text-reset">Delete</button>
+          </div><br>
+          <div class="list-container"><span>Quiz 3</span><button onclick="window.location='quiz.html';" class="btn btn-primary text-reset">Take</button><button
+            onclick="window.location='edit.html';"  class="btn btn-primary text-reset">Edit</button><button class="btn btn-primary text-reset">Delete</button>
+          </div><br>
+          <div class="list-container"><span>Quiz 4</span><button onclick="window.location='quiz.html';" class="btn btn-primary text-reset">Take</button><button
+            onclick="window.location='edit.html';"  class="btn btn-primary text-reset">Edit</button><button class="btn btn-primary text-reset">Delete</button>
+          </div><br>
+        </div>
+      </fieldset>
+    </div>
+  </main>
 
-      <div>
-        <label for="count">Score</label>
-        <input type="text" id="count" value="--" readonly />
-      </div>
-
-      <br>
-
-      <div>
-        <form method="get" action="create.html">
-          <button>Create Quiz</button>
-        </form>
-        <br>
-        <fieldset>
-          <legend>Quiz List</legend>
-          <div>Quiz 1 <button>Take</button> <button>Edit</button> <button>Delete</button></div>
-          <div>Quiz 2 <button>Take</button> <button>Edit</button> <button>Delete</button></div>
-          <div>Quiz 3 <button>Take</button> <button>Edit</button> <button>Delete</button></div>
-          <div>Quiz 4 <button>Take</button> <button>Edit</button> <button>Delete</button></div>
-        </fieldset>
-      </div>
-    </main>
-
-    <footer>
-      <hr>
+  <footer>
+    <div class="container-fluid">
       <span class="text-reset">Lehi Alcantara</span>
-      <br>
-      <a href="https://github.com/ylehilds/startup">GitHub</a>
-    </footer>
-  </body>
+      <a class="text-reset" href="https://github.com/ylehilds/startup">GitHub</a>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="./theme.js" crossorigin="anonymous"></script>
+</body>
+
 </html>

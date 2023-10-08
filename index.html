@@ -1,55 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8">
     <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Maker</title>
     <link rel="icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="main.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
   <body>
     <!-- Use header, main, and footer elements to give semantic structure -->
-    <header>
-      <h1>Quiz Maker<sup>&reg;</sup></h1>
-
+    <header class="container-fluid">
       <!-- Navigation elements -->
-      <nav>
+      <nav class="navbar fixed-top">
+        <a class="navbar-brand" href="index.html">Quiz Maker<sup>&reg;</sup></a>
+
         <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
-        <menu>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="quiz.html">Take Quiz</a></li>
-          <li><a href="create.html">Create/Edit</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="about.html">About</a></li>
+        <menu class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="dashboard.html">Home</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="create.html">Quiz</a></li> -->
+          <li class="nav-item"><a class="nav-link" href="scores.html">Scores</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
         </menu>
+        
+        <!-- <button class="btn btn-dark shadow" id="btnSwitch">Theme Toggle</button> -->
+        <!-- Default switch -->
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+        </div>
+
       </nav>
 
       <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-      <hr>
+      <!-- <hr> -->
     </header>
 
-    <main>
+    <main class="container-fluid text-center">
+      <div>
       <h1>Welcome</h1>
       <p>Login to play/create/edit a quiz</p>
       <form method="get" action="dashboard.html">
         <label for="email">Email</label>
-        <input type="text" id="email" placeholder="Your email here" />
+        <input class="form-control"type="text" id="email" placeholder="Your email here" />
         <br>
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Your password here" />
+        <input class="form-control" type="password" id="password" placeholder="Your password here" />
         <br>
         <br>
-        <button type="submit">Sign In</button>
-        <button type="button">Sign Out</button>
+        <button type="submit" class="btn btn-primary text-reset">Sign In</button>
+        <button type="button" class="btn btn-primary text-reset">Sign Out</button>
       </form>
+      </div>
     </main>
 
     <footer>
-      <hr>
+      <div class="container-fluid">
       <span class="text-reset">Lehi Alcantara</span>
-      <br>
-      <a href="https://github.com/ylehilds/startup">GitHub</a>
+      <a class="text-reset" href="https://github.com/ylehilds/startup">GitHub</a>
+      </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="./theme.js" crossorigin="anonymous"></script>
   </body>
 </html>
