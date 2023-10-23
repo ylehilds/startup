@@ -11,7 +11,7 @@ function getUsername() {
       alert("You are not logged in");
       return;
     } else {
-        document.getElementById("username").innerHTML = users[currentUserIndex].username
+        document.getElementById("username").textContent = users[currentUserIndex].username
     }
 }
 
