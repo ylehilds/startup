@@ -48,6 +48,7 @@ function creatingDashboard(type) {
       const buttonGroup = document.createElement('div');
       buttonGroup.classList.add('card-body', 'd-flex', 'justify-content-end');
   
+      if (type == 'myDashboard') {
       const editButton = document.createElement('button');
       editButton.innerText = 'Edit';
       editButton.classList.add('btn', 'btn-primary', 'me-2');
@@ -57,16 +58,18 @@ function creatingDashboard(type) {
         // handle edit button click
       });
       buttonGroup.appendChild(editButton);
+    }
   
       const takeButton = document.createElement('button');
       takeButton.innerText = 'Take';
-      takeButton.classList.add('btn', 'btn-success', 'me-2');
+      takeButton.classList.add('btn', 'btn-success', 'me-4');
       takeButton.addEventListener('click', () => {
         // handle take button click
         window.location.href = `quiz.html?quizId=${quizId}`;
       });
       buttonGroup.appendChild(takeButton);
   
+      if (type == 'myDashboard') {
       const deleteButton = document.createElement('button');
       deleteButton.innerText = 'Delete';
       deleteButton.classList.add('btn', 'btn-danger');
@@ -77,6 +80,7 @@ function creatingDashboard(type) {
         window.location.reload();        
       });
       buttonGroup.appendChild(deleteButton);
+    }
   
       quizItem.appendChild(buttonGroup);
       quizList.appendChild(quizItem);
