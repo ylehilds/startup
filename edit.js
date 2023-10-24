@@ -122,12 +122,12 @@ function displayQuestions() {
             optionInputs[0].focus();
             optionInputs[0].setSelectionRange(0, optionInputs[0].value.length);
             editContainer.querySelector('.save-button').addEventListener('click', () => {
-                questions[index].question = questionInput.value;
-                questions[index].options[0] = optionInputs[0].value;
-                questions[index].options[1] = optionInputs[1].value;
-                questions[index].options[2] = optionInputs[2].value;
-                questions[index].options[3] = optionInputs[3].value;
-                questions[index].answerIndex = parseInt(answerInput.value) - 1;
+                questions.questions[index].question = questionInput.value;
+                questions.questions[index].options[0] = optionInputs[0].value;
+                questions.questions[index].options[1] = optionInputs[1].value;
+                questions.questions[index].options[2] = optionInputs[2].value;
+                questions.questions[index].options[3] = optionInputs[3].value;
+                questions.questions[index].answerIndex = parseInt(answerInput.value) - 1;
                 displayQuestions();
             });
             editContainer.querySelector('.cancel-button').addEventListener('click', () => {
