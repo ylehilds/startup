@@ -88,9 +88,12 @@ function displayQuestions() {
         const answerInput = editContainer.querySelector('.answer-input');
         questionInput.focus();
         questionInput.setSelectionRange(0, questionInput.value.length);
-        optionInputs[0].focus();
         optionInputs[0].setSelectionRange(0, optionInputs[0].value.length);
         editContainer.querySelector('.save-button').addEventListener('click', () => {
+            if (questionInput.value === '' || optionInputs[0].value === '' || optionInputs[1].value === '' || optionInputs[2].value === '' || optionInputs[3].value === '') {
+                alert('Please fill in all fields.');
+                return
+            }
             questions.questions[index].question = questionInput.value;
             questions.questions[index].options[0] = optionInputs[0].value;
             questions.questions[index].options[1] = optionInputs[1].value;
