@@ -90,7 +90,7 @@ let questions = [];
         } else {
             user.scores[userScoreIndex].score = scoreObject.score;
         }
-        user.lastUpdated = new Date().toISOString();
+        user.lastUpdated = new Date().toLocaleDateString();
 
         users[userIndex] = user;
         localStorage.setItem('users', JSON.stringify(users));
