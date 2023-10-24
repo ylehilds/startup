@@ -74,11 +74,11 @@ function displayQuestions() {
             options: ['', '', '', ''],
             answerIndex: 0,
         };
-        questions.push(question);
+        questions.questions.push(question);
 
         displayQuestions();
 
-        const index = questions.length - 1;
+        const index = questions.questions.length - 1;
         const questionContainer = questionList.children[index].querySelector('.question-container');
         const editContainer = questionList.children[index].querySelector('.edit-container');
         questionContainer.style.display = 'none';
@@ -91,16 +91,16 @@ function displayQuestions() {
         optionInputs[0].focus();
         optionInputs[0].setSelectionRange(0, optionInputs[0].value.length);
         editContainer.querySelector('.save-button').addEventListener('click', () => {
-            questions[index].question = questionInput.value;
-            questions[index].options[0] = optionInputs[0].value;
-            questions[index].options[1] = optionInputs[1].value;
-            questions[index].options[2] = optionInputs[2].value;
-            questions[index].options[3] = optionInputs[3].value;
-            questions[index].answerIndex = parseInt(answerInput.value) - 1;
+            questions.questions[index].question = questionInput.value;
+            questions.questions[index].options[0] = optionInputs[0].value;
+            questions.questions[index].options[1] = optionInputs[1].value;
+            questions.questions[index].options[2] = optionInputs[2].value;
+            questions.questions[index].options[3] = optionInputs[3].value;
+            questions.questions[index].answerIndex = parseInt(answerInput.value) - 1;
             displayQuestions();
         });
         editContainer.querySelector('.cancel-button').addEventListener('click', () => {
-            questions.splice(index, 1);
+            questions.questions.splice(index, 1);
             displayQuestions();
         });
     });
@@ -141,7 +141,7 @@ function displayQuestions() {
     deleteButtons.forEach((button) => {
         button.addEventListener('click', (event) => {
             const index = event.target.dataset.index;
-            questions.splice(index, 1);
+            questions.questions.splice(index, 1);
             displayQuestions();
         });
     });
