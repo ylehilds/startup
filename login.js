@@ -1,3 +1,4 @@
+
 function signIn() {
     var usernameAction = document.getElementById("username").value
     var passwordAction = document.getElementById("password").value
@@ -65,7 +66,7 @@ function signUp(users) {
             return
         }
         checkLogin(users)
-        const user = { username, password, isLoggedIn: true };
+        const user = { username, password, isLoggedIn: true , scores:[], id: uuidv4()};
         users.push(user)
         localStorage.setItem("users", JSON.stringify(users));
         window.location = "dashboard.html";
@@ -121,3 +122,11 @@ document.querySelector('#password').addEventListener('keyup', function(event){
   })
 
 pageLoginState()
+
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }

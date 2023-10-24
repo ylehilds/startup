@@ -17,18 +17,24 @@ function getUsername() {
 
 getUsername()
 
-function creatingDashboard() {
-    let quizzes = localStorage.getItem("quizzes");
+function creatingDashboard(type) {
+
+    const users = JSON.parse(localStorage.getItem('users'));
+    const user = users.find(user => user.isLoggedIn == true);
+    let quizzes = localStorage.getItem("quizzes")
     if (quizzes) {
       quizzes = JSON.parse(quizzes);
     } else {
       quizzes = {};
       localStorage.setItem("quizzes", JSON.stringify(quizzes));
     }
+
+    if (type == 'myDashboard') quizzes = Object.fromEntries(Object.entries(quizzes).filter(([key, value]) => value.creatorId.includes(user.id)));
+    else if (type == 'communityDashboard') quizzes = Object.fromEntries(Object.entries(quizzes).filter(([key, value]) => !value.creatorId.includes(user.id)));
   
     const quizList = document.createElement('div');
     quizList.classList.add('quiz-list');
-  
+
     for (const quizId in quizzes) {
       const quiz = quizzes[quizId];
       const quizItem = document.createElement('div');
@@ -57,6 +63,7 @@ function creatingDashboard() {
       takeButton.classList.add('btn', 'btn-success', 'me-2');
       takeButton.addEventListener('click', () => {
         // handle take button click
+        window.location.href = `quiz.html?quizId=${quizId}`;
       });
       buttonGroup.appendChild(takeButton);
   
@@ -78,5 +85,8 @@ function creatingDashboard() {
     return quizList;
   }
   
-  const dashboard = document.getElementById('dashboard');
-  dashboard.appendChild(creatingDashboard());
+  const dashboard = document.getElementById('myDashboard');
+  dashboard.appendChild(creatingDashboard('myDashboard'));
+
+  const commDashboard = document.getElementById('communityDashboard');
+  commDashboard.appendChild(creatingDashboard('communityDashboard'));

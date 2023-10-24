@@ -39,8 +39,10 @@ questionList.addEventListener('click', (event) => {
 });
 
 function saveQuestionToLocalStorage(question, quizId, quizTitle) {
+    const users = JSON.parse(localStorage.getItem('users'));
+    const user = users.find(user => user.isLoggedIn == true);
     let quizzes = JSON.parse(localStorage.getItem('quizzes')) || {};
-    quizzes[quizId] = quizzes[quizId] || { title: quizTitle, questions: [] };
+    quizzes[quizId] = quizzes[quizId] || { title: quizTitle, questions: [] , creatorId: user.id};
     quizzes[quizId].questions.push(question);
     localStorage.setItem('quizzes', JSON.stringify(quizzes));
   }
