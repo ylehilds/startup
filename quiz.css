@@ -82,3 +82,7 @@ button:hover{
   height: 200px;
   margin-top: 40px;
 }
+
+#quizNavigation {
+  padding-top: 50px;
+}
