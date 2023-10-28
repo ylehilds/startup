@@ -65,7 +65,7 @@ function displayQuestions() {
     const addButton = document.createElement('button');
     addButton.innerText = 'Add Question';
     // addButton.classList.add('btn', 'btn-primary', 'mt-1');
-    addButton.style.width = '20%';
+    addButton.style.width = '40%';
     addButton.style.backgroundColor = '#4CAF50'
 
     addButton.addEventListener('click', () => {

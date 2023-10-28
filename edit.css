@@ -18,6 +18,10 @@
   float: none;
 }
 
-.quiz-frame {
-  width: 660px;
-} 
+
+
+@media (min-width: 600px) {
+  .quiz-frame {
+    width: 660px;
+  } 
+}
