@@ -168,6 +168,7 @@ let questions = [];
     nextButton.addEventListener("click", showNextSlide);
   })();
   
+  // Helper functions
   function mapIndexToLetter(index) {
     switch (index) {
       case 0:
@@ -181,6 +182,7 @@ let questions = [];
     }
   }
 
+  // Method placeholder before we start using websockets
   setInterval(() => {
     const score = Math.floor(Math.random() * 3000);
     const chatText = document.querySelector('#players-actions ul');
