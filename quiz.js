@@ -4,20 +4,20 @@ let questions = [];
 (function(){
     // Functions
     function buildQuiz(){
-      // variable to store the HTML output
+      // store HTML output
       const output = [];
   
-      // for each question...
+      // Loop through questions
       myQuestions.forEach(
         (currentQuestion, questionNumber) => {
   
-          // variable to store the list of possible answers
+          // variable to store answers
           const answers = [];
   
-          // and for each available answer...
+          // Loop though answers
           for(letter in currentQuestion.answers){
   
-            // ...add an HTML radio button
+            // Add radio buttons
             answers.push(
               `<label>
                 <input type="radio" name="question${questionNumber}" value="${letter}">
@@ -27,7 +27,7 @@ let questions = [];
             );
           }
   
-          // add this question and its answers to the output
+          // add question and answers to output
           output.push(
             `<div class="slide">
               <div class="question"> ${currentQuestion.question} </div>
@@ -37,19 +37,19 @@ let questions = [];
         }
       );
   
-      // finally combine our output list into one string of HTML and put it on the page
+      // Combine output list into one string of HTML and display
       quizContainer.innerHTML = output.join('');
     }
   
     function showResults(){
   
-      // gather answer containers from our quiz
+      // gather answer containers from quiz
       const answerContainers = quizContainer.querySelectorAll('.answers');
   
       // keep track of user's answers
       let numCorrect = 0;
   
-      // for each question...
+      // loop each question
       myQuestions.forEach( (currentQuestion, questionNumber) => {
   
         // find selected answer
@@ -57,17 +57,17 @@ let questions = [];
         const selector = `input[name=question${questionNumber}]:checked`;
         const userAnswer = (answerContainer.querySelector(selector) || {}).value;
   
-        // if answer is correct
+        // if the answer is correct
         if(userAnswer === currentQuestion.correctAnswer){
           // add to the number of correct answers
           numCorrect++;
   
-          // color the answers green
+          // set answer(s) color to green
           answerContainers[questionNumber].style.color = 'lightgreen';
         }
-        // if answer is wrong or blank
+        // if the answer(s) is wrong or blank
         else{
-          // color the answers red
+          // set answer(s) color to red
           answerContainers[questionNumber].style.color = 'red';
         }
       });
