@@ -27,7 +27,10 @@ questionForm.addEventListener('submit', (event) => {
     <button class="delete-button">Delete</button>
   `;
   questionList.appendChild(li);
+  const inputToSkip = document.getElementById('quizTitle');
+  const currentValue = inputToSkip.value;
   document.getElementById('question-form').reset();
+  inputToSkip.value = currentValue;
   saveQuestionToLocalStorage(question, quizId, quizTitle);
 });
 
@@ -67,5 +70,8 @@ function uuidv4() {
 const clearButton = document.getElementById('clear-button');
 clearButton.addEventListener('click', () => {
   const form = document.getElementById('question-form');
+  const inputToSkip = document.getElementById('quizTitle');
+  const currentValue = inputToSkip.value;
   form.reset();
+  inputToSkip.value = currentValue;
 });
