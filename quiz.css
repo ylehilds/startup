@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
+
 .main-quiz {
     flex: 1 calc(100vh - 110px);
     display: inline-block;
@@ -17,8 +19,6 @@
 .float-none {
   float: none;
 }
-
-@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
 body{
 	font-size: 20px;
