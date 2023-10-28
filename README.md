@@ -94,13 +94,13 @@ For this deliverable I properly styled the application into its final appearance
 
 For this deliverable I implemented with JavaScript so that the application works for a single user or multiple as long as they use same machine and signout. I also added placeholders for future technology.
 
-- **login** - Register the user with a username and password these will for the time being be stored in loca storage until we can keep secrets safe somewhere else. The login/register button takes you to the dashboard.
+- **login** - Register the user with a username and password these will for the time being be stored in local storage until we can keep secrets safe somewhere else in a next iteration. The login/register button takes you to the dashboard.
 
-- **database** - The scoreboard displays dyamically the scores from each user that uses the app on the same machine. Currently this is all stored and retrieved from local storage, but it will be replaced with the database data later.
+- **database** - The scoreboard displays dyamically the total scores from each user that uses the app on the same machine. Currently this is all stored and retrieved from local storage, but it will be replaced with the database data later.
   
 - **WebSocket** - I used the setInterval function to periodically insert players new scores, this is viweable while taking a quiz. This will be replaced with WebSocket messages later.
   
-- **application** logic - In the Dashboard you can create/edit/take/delete quizzes. Users will be able to see their own created quiz list as well as if another user signs in after you signout that user will see community quizzes created by the other user and is able to take the quiz, but not rights to edit/delete, that is only available if you created the original quiz. A lot of work has been done in the creation and editability of a quiz, quiz lists, users creation and saving data in local storage.
+- **application** logic - In the Dashboard you can create/edit/take/delete quizzes. Users will be able to see their own created quiz list as well as if another user signs in after you signout that user will see community quizzes created by the other user and is able to take the quiz, but not rights to edit/delete, that is only available if you created the original quiz. A lot of work has been done in the creation, editability, taking of a quiz, quiz lists, users creation and saving data in local storage.
 
 [Notes link](notes.md)
 
