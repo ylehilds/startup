@@ -96,3 +96,8 @@ button:hover{
   position: relative;
   padding-top: 40px;
 }
+
+#results {
+  position: relative;
+  padding-top: 15px;
+}
