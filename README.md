@@ -100,7 +100,7 @@ For this deliverable I implemented with JavaScript so that the application works
   
 - **WebSocket** - I used the setInterval function to periodically insert players new scores, this is viweable while taking a quiz. This will be replaced with WebSocket messages later.
   
-- **application** logic - In the Dashboard you can create/edit/take/delete quizzes. Users will be able to see their own created quiz list as well as if another user signs in after you signout that user will see community quizzes created by the other user and is able to take the quiz, but not rights to edit/delete, that is only available if you created the original quiz. A lot of work has been done in the creation, editability, taking of a quiz, quiz lists, users creation and saving data in local storage.
+- **application** logic - In the Dashboard you can create/edit/take/delete quizzes. Users will be able to see their own created quiz list as well as if another user signs in after you signout (by clicking to Quiz Maker logo navigation top left) that user will see community quizzes created by the other user and is able to take the quiz, but not rights to edit/delete, that is only available if you created the original quiz. A lot of work has been done in the creation, editability, taking of a quiz, quiz lists, users creation and saving data in local storage.
 
 [Notes link](notes.md)
 
