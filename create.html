@@ -41,12 +41,12 @@
     <main class="main-quiz container-fluid text-center">
       <br>
       <div class="quiz-frame">
-      <br>
-      <div><label for="quizTitle"></label><input class="form-control" type="text" placeholder="Quiz Title" id="quizTitle" name="quizTitle"></div>
-      <br>
       <div class="row">
         <div class="col-md-6">
           <form id="question-form" class="form-group">
+            <br>
+            <input class="form-control" type="text" placeholder="Quiz Title" id="quizTitle" name="quizTitle">
+            <br>
         <!-- <label for="question" class="form-label">Question:</label> -->
         <input type="text" placeholder="Question" id="question" name="question" class="form-control" required>
         <br>
@@ -73,17 +73,16 @@
         <div class="d-flex justify-content-between">
           <button type="submit" class="btn btn-primary">Add Question</button>
           <button type="button" id="clear-button" class="btn btn-warning">Clear</button>
+          <br><br>
         </div>
       </form>
         </div>
         <div class="col-md-6">
       <ul id="question-list" class="list-group"></ul>
       </div>
-
-
-
-
-    </main>
+    </div>
+  </div>
+</main>
 
     <footer>
       <div class="container-fluid">

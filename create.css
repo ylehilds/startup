@@ -8,8 +8,8 @@
   }
 
   .quiz-frame {
-    width: 660px;
-    display: inline-block;
+    /* width: 660px; */
+    /* display: inline-block; */
     align-items: center;
     text-align: center;
   } 
@@ -18,7 +18,8 @@
     font-size: 1.5em;
     font-weight: bold;
     /* margin-bottom: 1em; */
-    width: 320px;
+    /* width: 400px; */
+    text-align: center;
   }
 
 .float-none {

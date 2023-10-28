@@ -46,7 +46,7 @@ function creatingDashboard(type) {
       quizItem.appendChild(quizTitle);
   
       const buttonGroup = document.createElement('div');
-      buttonGroup.classList.add('card-body', 'd-flex', 'justify-content-end');
+      buttonGroup.classList.add('card-body', 'd-flex');
   
       if (type == 'myDashboard') {
       const editButton = document.createElement('button');

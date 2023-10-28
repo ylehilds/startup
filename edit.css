@@ -17,3 +17,7 @@
 .float-none {
   float: none;
 }
+
+.quiz-frame {
+  width: 660px;
+} 
