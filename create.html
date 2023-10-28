@@ -8,6 +8,7 @@
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="create.css" />
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="createEdit.css" />
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
@@ -38,45 +39,51 @@
     </header>
 
     <main class="main-quiz container-fluid text-center">
-      <!-- <div class="players">
-        Welcome
-        <span class="player-name">Lehi</span>
-      </div> -->
-
-      <!-- More formatting with old style HTML -->
       <br>
-
       <div class="quiz-frame">
-        <!-- <label for="count">Score</label>
-        <input class="form-control" type="text" id="count" value="--" readonly >
-       -->
-      <br>
-
-      
-        <div><label for="quizTitle">Quiz Title:</label><input class="form-control" type="text" id="quizTitle" name="quizTitle"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <form id="question-form" class="form-group">
+            <br>
+            <input class="form-control" type="text" placeholder="Quiz Title" id="quizTitle" name="quizTitle">
+            <br>
+        <!-- <label for="question" class="form-label">Question:</label> -->
+        <input type="text" placeholder="Question" id="question" name="question" class="form-control" required>
         <br>
-        <fieldset>
-          <legend>Create Quiz</legend>
-          <div>Question 1: <input class="form-control" type="textarea" placeholder="My Quiz Question 1"/></div>
-          <br>
-          <div>Please select 1 correct answer</div>
-          <br>
-          <div class="form-check">
-            <input class="form-check-input float-none" type="radio" id="a1" name="answer" value="a1" /> <label for="a1">My Answer 1</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input float-none"type="radio" id="a2" name="answer" value="a2" checked /> <label for="a2">My Answer 2</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input float-none" type="radio" id="a3" name="answer" value="a3" /> <label for="a3">My Answer 3</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input float-none" type="radio" id="a4" name="answer" value="a4" /> <label for="a4">My Answer 4</label>
-          </div>
-        </fieldset>
+        <!-- <label for="option1" class="form-label">Option 1:</label> -->
+        <input type="text" id="option1" name="option1" placeholder="Option 1" class="form-control" required>
+        <br>
+        <!-- <label for="option2" class="form-label">Option 2:</label> -->
+        <input type="text" id="option2" name="option2" placeholder="Option 2" class="form-control" required>
+        <br>
+        <!-- <label for="option3" class="form-label">Option 3:</label> -->
+        <input type="text" id="option3" name="option3" placeholder="Option 3" class="form-control" required>
+        <br>
+        <!-- <label for="option4" class="form-label">Option 4:</label> -->
+        <input type="text" id="option4" name="option4" placeholder="Option 4" class="form-control" required>
+        <br>
+        <label for="answer" class="form-label">Answer:</label>
+        <select id="answer" name="answer" class="form-select" required>
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+          <option value="option4">Option 4</option>
+        </select>
+        <br>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary">Add Question</button>
+          <button type="button" id="clear-button" class="btn btn-warning">Clear</button>
+          <br><br>
+        </div>
+      </form>
+      <br>
+        </div>
+        <div class="col-md-6">
+      <ul id="question-list" class="list-group"></ul>
       </div>
-      <div><button class="btn btn-primary text-reset">Save</button> <button class="btn btn-primary text-reset">Next</button> <button class="btn btn-primary text-reset">Cancel</button></div>
-    </main>
+    </div>
+  </div>
+</main>
 
     <footer>
       <div class="container-fluid">
@@ -86,5 +93,6 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="./theme.js" crossorigin="anonymous"></script>
+    <script src="./create.js" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -17,3 +17,11 @@
 .float-none {
   float: none;
 }
+
+
+
+@media (min-width: 600px) {
+  .quiz-frame {
+    width: 660px;
+  } 
+}

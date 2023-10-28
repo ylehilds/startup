@@ -34,26 +34,27 @@
         </div>
 
       </nav>
-
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-      <!-- <hr> -->
     </header>
 
     <main class="container-fluid text-center">
       <div>
       <h1>Welcome</h1>
+      <span id="userPasswordInputs" style="display: true;">
       <p>Login to play/create/edit a quiz</p>
-      <form method="get" action="dashboard.html">
-        <label for="email">Email</label>
-        <input class="form-control"type="text" id="email" placeholder="Your email here" />
+      <!-- <form method="get" action="dashboard.html"> -->
+        <label for="username">Username</label>
+        <input class="form-control"type="text" id="username" placeholder="Your username here" />
         <br>
         <label for="password">Password</label>
         <input class="form-control" type="password" id="password" placeholder="Your password here" />
+      </span>
         <br>
         <br>
-        <button type="submit" class="btn btn-primary text-reset">Sign In</button>
-        <button type="button" class="btn btn-primary text-reset">Sign Out</button>
-      </form>
+        <button id="signIn" type="submit" onclick="signIn()" class="btn btn-primary text-reset">Sign In</button>
+        <button id="signOut" style="display: none;" type="button" onclick="signOutRedirect()" class="btn btn-primary text-reset">Sign Out</button>
+        <button id="signUp" type="button" onclick="signUp()" class="btn btn-primary text-reset">Sign Up</button>
+        <button id="goToDashboard" style="display: none;" type="button" onclick="goToDashboard()" class="btn btn-primary text-reset">Dashboard</button>
+      <!-- </form> -->
       </div>
     </main>
 
@@ -65,5 +66,6 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="./theme.js" crossorigin="anonymous"></script>
+    <script src="login.js"></script>
   </body>
 </html>
