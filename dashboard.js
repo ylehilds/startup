@@ -29,6 +29,7 @@ function creatingDashboard(type) {
       localStorage.setItem("quizzes", JSON.stringify(quizzes));
     }
 
+    let allQuizzes = quizzes
     if (type == 'myDashboard') quizzes = Object.fromEntries(Object.entries(quizzes).filter(([key, value]) => value.creatorId.includes(user.id)));
     else if (type == 'communityDashboard') quizzes = Object.fromEntries(Object.entries(quizzes).filter(([key, value]) => !value.creatorId.includes(user.id)));
   
@@ -74,8 +75,11 @@ function creatingDashboard(type) {
       deleteButton.innerText = 'Delete';
       deleteButton.classList.add('btn', 'btn-danger');
       deleteButton.addEventListener('click', () => {
-        delete quizzes[quizId];
-        const updatedQuizzes = JSON.stringify(quizzes);
+        // Now I need to remove it from the master quizzes list
+        delete allQuizzes[quizId];
+        
+        // save the changes to local storage
+        const updatedQuizzes = JSON.stringify(allQuizzes);
         localStorage.setItem('quizzes', updatedQuizzes);
         window.location.reload();        
       });
