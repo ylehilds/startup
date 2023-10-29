@@ -1060,7 +1060,437 @@ function addScores(scores) {
 addScoresToTable()
 ```
 
+## Midterm Study Guide
+```javascript
+CS260 Midterm study guide?
 
+https://byu.instructure.com/courses/21001/pages/midterm-study-guide?module_item_id=1727814
+https://github.com/webprogramming260/.github/blob/main/profile/test/midterm.md
+
+Midterm study guide
+The midterm will cover all topics from the start of class until the end of the JavaScript instruction. Here are the details:
+	•	The test is available online with Canvas during the open dates.
+	•	The test must be taken during the open dates. Consult Canvas for open dates. No late days.
+	•	Multiple choice format.
+	•	There is no time limit.
+	•	The average time to take the test is less than 60 minutes.
+	•	You may view any notes that you have placed in your Startup repository notes.md file during the test. No other external notes, websites, content, programs, utilities, tools, or other people may be used or referenced.
+	•	The test focuses on general knowledge of the primary topics. You will need to know the basic syntax and usage of the languages and protocols of interest. This includes, but is not limited to, topics such as HTTP, console commands, DNS, HTML, CSS, and JavaScript.
+	•	It is highly suggested that you attend, or view, the class review session.
+
+https://byu.instructure.com/courses/21001/pages/midterm-study-guide?module_item_id=1727814
+
+
+The following questions are examples of what you may see on the midterm exam:
+	0.	In the following code, what does the link element do?
+	stylesheet, it will format the HTML document according to the information in the style sheet.
+	0.	In the following code,  what does a div tag do?
+	it is a piece of code in the Dom, a child/leaf  
+	0.	In the following code, what is the difference between the #title and .grid selector?
+	#title It is an id for an element, where the .grid is a class that could be applied to many elements
+	0.	In the following code, what is the difference between padding and margin?
+	
+padding and margin are two different properties that affect the spacing around an element.
+padding is the space between the element's content and its border. It's used to add space inside the element, and it doesn't affect the element's size or position. You can set the padding property using the padding shorthand or the individual padding-top, padding-right, padding-bottom, and padding-left properties.
+margin is the space between the element's border and the adjacent elements. It's used to add space outside the element, and it can affect the element's size and position. You can set the margin property using the margin shorthand or the individual margin-top, margin-right, margin-bottom, and margin-left properties.
+In summary, padding affects the space inside an element, while margin affects the space outside an element.
+
+
+	0.	Given this HTML and this CSS how will the images be displayed using flex?
+	In CSS, you can use Flexbox (Flexible Box Layout) to create flexible and responsive layouts for displaying images (or any other content) in a web page. Flexbox allows you to distribute space and align items within a container, making it a powerful tool for creating various types of layouts.
+
+	0.	What does the following padding CSS do?
+
+In CSS, the padding property is used to control the space between the content of an element and its border. It adds space inside the element but outside of the border. Padding is used to create space and separation between the content and the border of an element.
+The padding property can be applied to various HTML elements, such as divs, paragraphs, headings, and more. It can be set for individual sides (top, right, bottom, left) or as a single value to apply the same padding to all sides.
+
+element {
+  padding: 20px; /* Applies 20 pixels of padding to all sides */
+}
+
+Padding is often used to create spacing and improve the visual presentation of elements on a web page. It's particularly useful for creating margins around content within a container, giving it room to breathe and separating it from neighboring elements. The space added by padding is part of the element's total dimensions but doesn't affect the layout of adjacent elements.
+
+	0.	What does the following code using arrow syntax function declaration do?
+
+In JavaScript, an arrow function declaration, also known as an arrow function expression, is a concise way to create functions. Arrow functions were introduced in ECMAScript 6 (ES6) and provide a shorter syntax for writing functions compared to traditional function expressions. Arrow functions have a few important characteristics:
+	•			Shorter Syntax: Arrow functions have a more compact syntax, which is especially useful for simple functions.
+	•			Lexical this: Arrow functions do not have their own this context. They inherit the this value from their enclosing (surrounding) context. This can be particularly useful in certain situations where the this context is important.
+
+const functionName = (parameters) => {
+  // Function body
+  return result; // (optional) You can omit the return statement for a single expression.
+};
+
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // Output: 5
+
+
+
+	0.	What does the following code using map with an array output?
+
+in JavaScript, the map method is used with arrays to create a new array by applying a provided function to each element of the original array. The map function iterates through each element in the array, applies the given function to each element, and collects the results into a new array. This is particularly useful for transforming the data in an array without modifying the original array. The original array remains unchanged.
+Here's the basic syntax of the map method:
+
+const newArray = array.map((currentValue, index, array) => {
+  // Return a new value based on currentValue
+});
+
+———————— another example——————————
+const numbers = [1, 2, 3, 4, 5];
+
+const doubledNumbers = numbers.map((number) => {
+  return number * 2;
+});
+
+console.log(doubledNumbers); // Output: [2, 4, 6, 8, 10]
+
+
+	0.	What does the following code output using getElementByID and addEventListener?
+
+getElementById:
+The getElementById method is used to select and retrieve a specific HTML element from the DOM based on its unique id attribute. It returns a reference to the selected element, allowing you to manipulate or retrieve information from that element.
+
+const divElement = document.getElementById("myDiv");
+console.log(divElement.textContent); // Output: "This is a div element."
+
+
+addEventListener:
+The addEventListener method is used to attach an event listener to a DOM element. It allows you to define a function that will be executed when a specific event occurs on the element.
+
+Example:
+
+<button id="myButton">Click Me</button>
+
+const buttonElement = document.getElementById("myButton");
+
+buttonElement.addEventListener("click", () => {
+  console.log("Button clicked!");
+});
+
+
+	0.	What does the following line of Javascript do using a # selector?
+
+In JavaScript, a "#" selector is not used directly in the language. Instead, "#" is primarily associated with CSS (Cascading Style Sheets) to select elements by their HTML id attribute. The "#" character is used as part of a CSS selector to target a specific element with a unique identifier.
+
+In this CSS code, #myElement is a selector that targets an HTML element with the id attribute set to "myElement." This allows you to apply specific styling to that particular element.
+In JavaScript, if you want to work with elements selected using a "#" selector in CSS, you typically don't use "#" directly in your JavaScript code. Instead, you can select the element using the getElementById
+
+	0.	Which of the following are true? (mark all that are true about the DOM)
+
+In JavaScript, the DOM stands for Document Object Model. The Document Object Model is a programming interface and representation of a web page's structure, content, and properties. It provides a way for JavaScript to interact with and manipulate web pages in a structured and programmatic manner.
+Key points about the DOM:
+	•			Tree-Like Structure: The DOM represents the web page as a hierarchical tree-like structure, where each element, attribute, and text content is an object that can be accessed, modified, or manipulated using JavaScript.
+	•			Live and Dynamic: The DOM is dynamic and "live," meaning it reflects the current state of the web page. Any changes made to the DOM are immediately reflected in the web page's appearance and behavior.
+	•			Browser API: The DOM is provided by web browsers as a built-in API that JavaScript can access and utilize. It allows JavaScript to interact with HTML and XML documents.
+	•			HTML and XML Documents: While it is most commonly associated with HTML documents, the DOM can also be used with XML documents. Each element in the document is represented as a node in the DOM.
+	•			Accessing and Manipulating Elements: JavaScript can use DOM methods and properties to access, modify, or create elements and their attributes, change the content of elements, and respond to user events (e.g., clicks, keypresses).
+
+The DOM allows JavaScript to create interactive and dynamic web pages by providing a structured way to access and manipulate the elements and content of a document. It serves as a bridge between the web page and the JavaScript code, enabling developers to build web applications with rich user interfaces and behavior.
+
+	0.	By default, the HTML span element has a default CSS display property value of: 
+
+The default CSS `display` property value for the HTML `<span>` element is `inline`. This means that, by default, a `<span>` element is rendered inline within the flow of the surrounding text or content. It does not introduce line breaks before or after itself and only occupies as much width as its content requires.
+
+You can change the `display` property to other values like `block`, `inline-block`, or `inline-flex` to alter how the `<span>` element is rendered and how it interacts with other elements on the page. The choice of `display` value depends on your layout and design requirements.
+
+	0.	How would you use CSS to change all the div elements to have a background color of red?
+
+To change the background color of all <div> elements to red using CSS, you can use the following CSS rule:
+div {
+  background-color: red;
+}
+
+
+	0.	How would you display an image with a hyperlink in HTML?
+
+To display an image with a hyperlink (an image that, when clicked, takes the user to another web page), you can use the <a> (anchor) element to create the hyperlink and include an <img> (image) element within it. Here's the basic HTML structure:
+<a href="URL_of_the_destination_page">
+  <img src="URL_of_the_image" alt="Image Description">
+</a>
+
+
+	0.	In the CSS box model, what is the ordering of the box layers starting at the inside and working out?
+
+In the CSS box model, there are multiple layers or components that make up the structure of an element's layout. These layers start from the inside and work their way out. The box model layers, in order from the innermost to the outermost, are as follows:
+
+1. **Content**: This is the innermost layer, and it represents the actual content of the element. It includes the text, images, or other media contained within the element.
+
+2. **Padding**: The padding is the space between the content and the element's border. It is defined using the `padding` property in CSS and can vary for each side (top, right, bottom, left) of the element. Padding adds space around the content.
+
+3. **Border**: The border is the next layer outside of the padding. It is defined using the `border` property in CSS and can include properties like width, style, and color. The border surrounds the padding and content.
+
+4. **Margin**: The margin is the outermost layer, and it represents the space between the border of the element and any neighboring elements. It is defined using the `margin` property in CSS and can also vary for each side (top, right, bottom, left) of the element. Margins create space between the element and its neighboring elements.
+
+Here's a visual representation of the layers in the CSS box model:
+
+```
+------------------------------  (Margin)
+|                			       |
+|   -----------------   	   |  (Border)
+|   |               |			   |
+|   |   Content   	|	       |   (Padding)
+|   |               |			   |
+|   -----------------        |
+|                       	   |
+------------------------------
+```
+
+Understanding the box model and how these layers interact is crucial for controlling the layout and spacing of elements on a web page. It's important to keep in mind that the dimensions of an element, including its content, padding, border, and margin, collectively determine its overall size and positioning in the layout.
+
+	0.	Given the following HTML, what CSS would you use to set the text "troubl" to green and leave the "double" text unaffected?
+	…
+	0.	What will the following code output when executed using a for loop and console.log?
+
+	…
+	0.	How would you use JavaScript to select an element with the id of “byu” and change the text color of that element to green?
+
+
+To select an element with the id of "byu" and change the text color of that element to green using JavaScript, you can follow these steps:
+	•			Identify the HTML element with the id attribute set to "byu."
+	•			Use JavaScript to select that element.
+	•			Set the style.color property of the selected element to "green."
+
+<div id="byu">This is the element to change text color.</div>
+// Select the element by its id
+const byuElement = document.getElementById("byu");
+
+// Change the text color to green
+byuElement.style.color = "green";
+
+
+	0.	What is the opening HTML tag for a paragraph, ordered list, unordered list, second level heading, first level heading, third level heading?
+
+	•			Paragraph: <p>
+	•			Ordered List: <ol>
+	•			Unordered List: <ul>
+	•			Second-level Heading (Heading 2): <h2>
+	•			First-level Heading (Heading 1): <h1>
+	•			Third-level Heading (Heading 3): <h3>
+
+	0.	How do you declare the document type to be html?
+
+To declare the document type (DOCTYPE) for an HTML document as HTML5, you can include the following declaration at the very beginning of your HTML document:
+<!DOCTYPE html>
+
+This declaration tells the browser that the document is an HTML5 document. HTML5 is the latest version of HTML and is widely used for creating modern web pages. It's important to include this declaration at the beginning of your HTML document to ensure that the browser renders your page correctly and follows HTML5 standards.
+
+
+	0.	What is valid javascript syntax for if, else, for, while, switch statements?
+
+Certainly, here's the valid JavaScript syntax for `if`, `else`, `for`, `while`, and `switch` statements:
+
+1. `if` statement:
+
+```javascript
+if (condition) {
+  // Code to execute if the condition is true
+} else if (anotherCondition) {
+  // Code to execute if another condition is true
+} else {
+  // Code to execute if no condition is true
+}
+```
+
+2. `for` loop:
+
+```javascript
+for (initialization; condition; increment/decrement) {
+  // Code to execute in each iteration
+}
+```
+
+3. `while` loop:
+
+```javascript
+while (condition) {
+  // Code to execute as long as the condition is true
+}
+```
+
+4. `switch` statement:
+
+```javascript
+switch (expression) {
+  case value1:
+    // Code to execute if expression equals value1
+    break;
+  case value2:
+    // Code to execute if expression equals value2
+    break;
+  default:
+    // Code to execute if expression doesn't match any case
+}
+```
+
+These are the basic structures of the control flow statements in JavaScript. You can use these statements to control the flow of your code, make decisions, loop through data, and switch between different code blocks based on specific conditions. Remember to replace "condition," "expression," "value1," "value2," and the code comments with the actual logic and values that are relevant to your specific use case.
+
+
+	0.	What is the correct syntax for creating a javascript object?
+
+In JavaScript, you can create an object using two primary syntax styles: object literal notation and constructor notation. Here's the correct syntax for both methods:
+
+1. **Object Literal Notation**:
+
+   Object literal notation is the most common way to create objects in JavaScript. It involves defining the object's properties and values directly within curly braces `{}`.
+
+   ```javascript
+   // Creating an object using object literal notation
+   const person = {
+     firstName: "John",
+     lastName: "Doe",
+     age: 30,
+   };
+   ```
+
+2. **Constructor Notation**:
+
+   You can also create objects using constructor functions. A constructor function is a regular JavaScript function that is used to construct and initialize objects.
+
+   ```javascript
+   // Creating an object using constructor notation
+   function Person(firstName, lastName, age) {
+     this.firstName = firstName;
+     this.lastName = lastName;
+     this.age = age;
+   }
+
+   const person = new Person("John", "Doe", 30);
+   ```
+
+   In this example, `Person` is a constructor function, and you create a `person` object by using the `new` keyword to instantiate the constructor function.
+
+Both methods allow you to define and work with objects in JavaScript. Object literal notation is more concise and is commonly used for simple objects, while constructor notation can be useful for creating multiple objects with similar structures, especially when you need to include methods as well.
+
+
+
+	0.	Is is possible to add new properties to javascript objects?
+
+Yes, it is possible to add new properties to JavaScript objects. JavaScript objects are dynamic, meaning you can add, modify, or delete properties at any time, even after the object has been created. Here's how you can add new properties to an existing object:
+
+	0.	If you want to include JavaScript on an HTML page, which tag do you use?
+
+To include JavaScript on an HTML page, you can use the <script> tag. The <script> tag is used to embed or reference JavaScript code within an HTML document
+line JavaScript: You can include JavaScript code directly within the HTML document using the <script> tag in the <head> or <body> section.
+External JavaScript File: You can also link to an external JavaScript file using the src attribute of the <script> tag. This is a common practice for organizing and separating your JavaScript code from your HTML content.
+
+	0.	Given the following HTML, what JavaScript could you use to set the text "animal" to "crow" and leave the "fish" text unaffected?
+
+<p>My favorite animal is a <span id="animal">animal</span>, and I also like to go fishing for <span id="fish">fish</span>.</p>
+// Select the element with the id "animal"
+const animalElement = document.getElementById("animal");
+
+// Change the text content of the selected element
+animalElement.textContent = "crow";
+
+
+	0.	Which of the following correctly describes JSON?
+
+JSON is a lightweight data interchange format that is used for data storage and exchange between a server and a client or between different parts of an application. It is often used in web development and is designed to be easy for both humans to read and write and for machines to parse and generate.
+Key characteristics of JSON include:
+	•	Text-Based: JSON data is represented as plain text, making it easy to read and write for both developers and machines.
+	•	Data Structure: JSON is a structured data format, typically consisting of key-value pairs, where data is organized in a way similar to JavaScript objects.
+	•	Common Data Types: JSON supports various data types, including strings, numbers, objects, arrays, booleans, and null.
+	•	Widely Supported: JSON is supported by many programming languages and can be used in various contexts, making it an ideal choice for data exchange and configuration files.
+	•	Human-Readable: JSON data is easy for humans to read and understand, which is a significant advantage for debugging and configuration.
+	•	Lightweight: JSON is minimalistic in its design, making it efficient in terms of data size and transfer.
+	•	Language-Agnostic: JSON is not tied to any specific programming language and can be used in a wide range of contexts.
+In summary, JSON is a widely used data format that facilitates data exchange and storage in a human-readable, lightweight, and language-agnostic manner. It is often used in web development, APIs, and data transmission between systems.
+
+
+	0.	What does the console command chmod, pwd, cd, ls, vim, nano, mkdir, mv, rm, man, ssh, ps, wget, sudo  do?
+
+	•			chmod: Change file permissions. It is used to modify the access permissions of files and directories.
+	•			pwd: Print Working Directory. It displays the current directory path where you are located in the file system.
+	•			cd: Change Directory. It is used to change your current working directory.
+	•			ls: List files and directories. It shows the contents of the current directory.
+	•			vim: A text editor. It is a powerful and efficient command-line text editor.
+	•			nano: Another text editor. It's a more user-friendly and straightforward command-line text editor.
+	•			mkdir: Make Directory. It's used to create new directories (folders).
+	•			mv: Move or rename files and directories. It can be used to move a file from one location to another or rename files.
+	•			rm: Remove files or directories. It is used to delete files or directories. Be cautious, as it is not easily reversible.
+	•			man: Manual pages. It displays manual pages (documentation) for various commands. For example, man ls shows the manual for the ls command.
+	•			ssh: Secure Shell. It is used to securely connect to remote servers or systems over a network.
+	•			ps: Process Status. It lists the currently running processes on the system.
+	•			wget: Web Get. It is a command-line tool for downloading files from the internet.
+	•			sudo: Superuser Do. It is used to execute commands with superuser (administrator) privileges. It's often required for system administration tasks.
+
+	0.	Which of the following console command creates a remote shell session?
+
+the one that creates a remote shell session is ssh (Secure Shell). The ssh command is used to securely connect to a remote server or system over a network and access a shell session on that remote machine. It allows you to log in remotely and execute commands on a remote server while encrypting the communication to maintain security and privacy.
+ssh username@remote_server
+
+
+	0.	Which of the following is true when the -la parameter is specified for the ls console command?
+
+When the `-la` parameter is specified for the `ls` console command, it modifies the behavior of the `ls` command in Unix-like operating systems (such as Linux and macOS) as follows:
+
+1. `-l`: This option stands for "long format." It causes `ls` to display additional details about each file or directory, including file permissions, owner, group, file size, modification date, and file/directory name.
+
+2. `-a`: This option stands for "all." It instructs `ls` to show hidden files and directories as well. Hidden files and directories in Unix-like systems are those that start with a dot (e.g., `.examplefile` or `.exampledirectory`). By default, the `ls` command does not display hidden files and directories.
+
+So, when you run `ls -la`, it will display a detailed listing of all files and directories in the current directory, including hidden files and directories. This is often used for a comprehensive view of the contents of a directory when exploring or managing files.
+
+
+	0.	Which of the following is true for the domain name banana.fruit.bozo.click, which is the top level domain, which is a subdomain, which is a root domain?
+
+A domain name is simply a text string that follows a specific naming convention and is listed in a special database called the domain name registry.
+Domain names are broken up into a root domain, with one or more possible subdomain prefixes. The root domain is represented by a secondary level domain and a top level domain. The top level domain (TLD) represent things like com, edu, or click. So a root domain would look something like byu.edu, google.com, or cs260.click. The possible list of TLDs is controlled by ICANN, one of the governing boards of the internet.
+
+The owner of a root domain can create any number of subdomains off the root domain. Each subdomain may resolve to a different IP address. So the owner of cs260.click can have subdomains for travel (travel.cs260.click), finance (finance.cs260.click), or a blog (blog.cs260.click).
+
+In the question case here is the following:
+top level domain: click
+subdomain: banana.fruit
+root domain: bozo.click
+Domain name: banana.fruit.bozo.click
+
+	0.	Is a web certificate is necessary to use HTTPS.
+
+Yes, a web certificate, specifically an SSL/TLS certificate, is necessary to use HTTPS (Hypertext Transfer Protocol Secure) on a website.
+
+	0.	Can a DNS A record can point to an IP address or another A record.
+
+
+A DNS A record (Address record) is used to map a domain or subdomain to an IPv4 address. It cannot directly point to another A record. However, you can achieve a similar effect by pointing a CNAME (Canonical Name) record to another A record.
+
+Here's a breakdown of how you can use these records:
+
+1. **A Record**: A DNS A record maps a domain or subdomain to a specific IPv4 address. For example, you can create an A record like this:
+
+   ```
+   example.com. IN A 192.168.1.1
+   ```
+
+   This maps "example.com" to the IPv4 address 192.168.1.1.
+
+The DNS database records that facilitate the mapping of domain names to IP addresses come in several flavors. The main ones we are concerned with are the address (A) and the canonical name (CNAME) records. An A record is a straight mapping from a domain name to IP address. A CNAME record maps one domain name to another domain name. This acts as a domain name alias. You would use a CNAME to do things like map byu.com to the same IP address as byu.edu so that either one could be used.
+
+2. **CNAME Record**: A DNS CNAME record allows you to create an alias for a domain or subdomain. It can point to another domain or subdomain (which may have an associated A record). For example:
+
+   ```
+   alias.example.com. IN CNAME original.example.com.
+   ```
+
+   In this case, "alias.example.com" is an alias for "original.example.com," which may have an associated A record pointing to an IPv4 address. This way, "alias.example.com" indirectly points to an IPv4 address through "original.example.com."
+
+While CNAME records can point to other domain names, they don't directly map to IPv4 addresses like A records. Typically, A records are used to map domains directly to IP addresses, while CNAME records are used for aliasing and redirection.
+
+
+	0.	Port 443, 80, 22 is reserved for which protocol?
+
+Port 443, 80, and 22 are reserved for specific network protocols as follows:
+
+1. **Port 443**: Port 443 is reserved for the HTTPS (Hypertext Transfer Protocol Secure) protocol, which is used for secure web communication. When you visit a website using HTTPS, data is transmitted over this port, and it's encrypted to ensure a secure connection.
+
+2. **Port 80**: Port 80 is reserved for the HTTP (Hypertext Transfer Protocol) protocol, which is used for standard, non-secure web communication. When you visit a website using HTTP, data is transmitted over this port without encryption.
+
+3. **Port 22**: Port 22 is reserved for the SSH (Secure Shell) protocol, which is used for secure remote access to computer systems and secure file transfers. It provides encrypted communication for secure administration and secure file transfers.
+
+These port numbers are well-known and standardized across the internet to ensure consistency and compatibility for various network services and applications.
+
+
+	0.	What will the following code using Promises output when executed?
+```
 
 
 -----------------------------------------------------------------------------
