@@ -30,6 +30,21 @@
   height: 100%;
 }
 
+#picture2 img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200px;
+  width: 200px;
+}
+
+#picture2 {
+  background: none;
+  justify-content: center;
+  align-items: center;
+  margin: 19px;
+}
+
 .main-about {
   justify-content: center;
 }
@@ -37,4 +52,5 @@
 main {
   align-items: center;
   justify-content: space-around;
+  display:block;
 }

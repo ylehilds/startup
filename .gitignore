@@ -130,4 +130,8 @@ dist
 .pnp.*
 
 .idea
-.DS_STORE
+.vscode/
+.DS_Store
+node_modules/
+dist/
+dbConfig.json

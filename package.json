@@ -1,0 +1,22 @@
+{
+  "name": "startup-server",
+  "version": "1.0.0",
+  "description": "Startup with service endpoints",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ylehilds/startup.git"
+  },
+  "author": "Lehi Alcantara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ylehilds/startup/issues"
+  },
+  "homepage": "https://github.com/ylehilds/startup#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
