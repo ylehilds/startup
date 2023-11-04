@@ -45,13 +45,6 @@ async function creatingDashboard(type) {
     const users = await getUsers()
     const user = getUser()
     let quizzes = await getQuizzes()
-    // let quizzes = localStorage.getItem("quizzes")
-    // if (quizzes) {
-    //   quizzes = JSON.parse(quizzes);
-    // } else {
-    //   quizzes = {};
-    //   localStorage.setItem("quizzes", JSON.stringify(quizzes));
-    // }
 
     let allQuizzes = quizzes
     if (type == 'myDashboard') quizzes = Object.fromEntries(Object.entries(quizzes).filter(([key, value]) => value.creatorId.includes(user.id)));
