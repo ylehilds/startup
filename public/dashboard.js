@@ -106,14 +106,7 @@ async function creatingDashboard(type) {
       deleteButton.innerText = 'Delete';
       deleteButton.classList.add('btn', 'btn-danger');
       deleteButton.addEventListener('click', () => {
-        // Now I need to remove it from the master quizzes list
-        // delete allQuizzes[quizId];
         deleteQuiz(quizId);
-        // TODO: call the backend to delete the quiz
-        
-        // save the changes to local storage
-        // const updatedQuizzes = JSON.stringify(allQuizzes);
-        // localStorage.setItem('quizzes', updatedQuizzes);
         window.location.reload();        
       });
       buttonGroup.appendChild(deleteButton);

@@ -36,32 +36,15 @@ function revealResults() {
 
   results.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
   
-  // start of this will be refactored once login/db is implemented
   const user = JSON.parse(localStorage.getItem('user'));
-  // const userIndex = users.findIndex(user => user.isLoggedIn == true);
-  // const user = users[userIndex];
   const score = numCorrect;
   const scoreObject = {
     quizId,
     score,
     username: user.username
   }
-  // const userScoreIndex = user.scores.findIndex(score => score.quizId == quizId);
-
-  // if (userScoreIndex == -1) {
-  //   user.scores.push(scoreObject);
-  // } else {
-  //   user.scores[userScoreIndex].score = scoreObject.score;
-  // }
-  // user.lastUpdated = new Date().toLocaleString();
-
-  // users[userIndex] = user;
-  // localStorage.setItem('users', JSON.stringify(users));
-  
-  // end of this will be refactored once login/db is implemented
 
   submitScore(user.id, scoreObject);
-
   alert('Quiz submitted successfully!');
 }
 

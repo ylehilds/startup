@@ -7,7 +7,6 @@ const quizId = new URLSearchParams(window.location.search).get('quizId');
 let questions = [];
 
 if (quizId) {
-    // const quizzes = JSON.parse(localStorage.getItem('quizzes')) || {};
     let quizzes = await getQuizzes()
 
     const quiz = Object.entries(quizzes).find(([id, questions]) => id === quizId || id === uuidToString(quizId));
@@ -37,7 +36,6 @@ async function getQuizzes() {
   }
 
 saveButton.addEventListener('click', async () => {
-    // const quizzes = JSON.parse(localStorage.getItem('quizzes')) || {};
     let quizzes = await getQuizzes()
 
     const quizIndex = Object.keys(quizzes).findIndex((id) => id === quizId || id === uuidToString(quizId));
@@ -45,7 +43,6 @@ saveButton.addEventListener('click', async () => {
         const title = document.getElementById('editQuizTitle').value;
         questions.title = title;
         quizzes[quizId] = questions;
-        localStorage.setItem('quizzes', JSON.stringify(quizzes));
         
         await fetch(`/api/quizzes/${quizId}`, {
             method: 'PUT',
