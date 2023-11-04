@@ -3,7 +3,7 @@ const app = express();
 const login = require('./util/login.js');
 
 let scores = {}
-let quizzes = []
+let quizzes = {}
 let users = []
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
@@ -49,6 +49,36 @@ apiRouter.post('/signin', (req, res) => {
   console.error(error)
 }
   res.status(409).send()
+});
+
+// getQuizzes
+apiRouter.get('/quizzes', (req, res) => {
+  res.send(quizzes);
+});
+
+// getQuizzesQuizId
+apiRouter.get('/quizzes/:quizId', (req, res) => {
+const quizId = req.params.quizId
+  res.send(scores);
+});
+
+// createQuiz
+apiRouter.post('/quizzes', (req, res) => {
+  const body = req.body
+  res.send(users);
+});
+
+// editQuiz
+apiRouter.post('/quizzes/:quizId', (req, res) => {
+  const body = req.body
+  const quizId = req.params.quizId
+  res.send(users);
+});
+
+// deleteQuizId
+apiRouter.delete('/quizzes/:quizId', (req, res) => {
+  const quizId = req.params.quizId
+  res.send(scores);
 });
 
 // loginUser

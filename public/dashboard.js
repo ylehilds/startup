@@ -25,19 +25,33 @@ async function getUsers() {
   } else {
     return null;
   }
+}
 
+async function getQuizzes() {
+  const response = await fetch('/api/quizzes', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  if (response.status === 200) {
+    return response.json();
+  } else {
+    return null;
+  }
 }
 
 async function creatingDashboard(type) {
     const users = await getUsers()
     const user = getUser()
-    let quizzes = localStorage.getItem("quizzes")
-    if (quizzes) {
-      quizzes = JSON.parse(quizzes);
-    } else {
-      quizzes = {};
-      localStorage.setItem("quizzes", JSON.stringify(quizzes));
-    }
+    let quizzes = await getQuizzes()
+    // let quizzes = localStorage.getItem("quizzes")
+    // if (quizzes) {
+    //   quizzes = JSON.parse(quizzes);
+    // } else {
+    //   quizzes = {};
+    //   localStorage.setItem("quizzes", JSON.stringify(quizzes));
+    // }
 
     let allQuizzes = quizzes
     if (type == 'myDashboard') quizzes = Object.fromEntries(Object.entries(quizzes).filter(([key, value]) => value.creatorId.includes(user.id)));
@@ -87,10 +101,11 @@ async function creatingDashboard(type) {
       deleteButton.addEventListener('click', () => {
         // Now I need to remove it from the master quizzes list
         delete allQuizzes[quizId];
+        // TODO: call the backend to delete the quiz
         
         // save the changes to local storage
-        const updatedQuizzes = JSON.stringify(allQuizzes);
-        localStorage.setItem('quizzes', updatedQuizzes);
+        // const updatedQuizzes = JSON.stringify(allQuizzes);
+        // localStorage.setItem('quizzes', updatedQuizzes);
         window.location.reload();        
       });
       buttonGroup.appendChild(deleteButton);
@@ -102,9 +117,15 @@ async function creatingDashboard(type) {
   
     return quizList;
   }
-  
-  const dashboard = document.getElementById('myDashboard');
-  dashboard.appendChild(creatingDashboard('myDashboard'));
 
-  const commDashboard = document.getElementById('communityDashboard');
-  commDashboard.appendChild(creatingDashboard('communityDashboard'));
+  async function init() {
+    let dashboard = document.getElementById('myDashboard')
+    dashboard.appendChild(await creatingDashboard('myDashboard'));
+  
+    let commDashboard = document.getElementById('communityDashboard')
+    commDashboard.appendChild(await creatingDashboard('communityDashboard'))
+  }
+
+  init()
+  
+  
