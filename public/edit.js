@@ -1,3 +1,5 @@
+(async function() {
+
 const questionList = document.getElementById('question-list');
 const questionForm = document.getElementById('question-form');
 const saveButton = document.getElementById('save-button');
@@ -5,7 +7,9 @@ const quizId = new URLSearchParams(window.location.search).get('quizId');
 let questions = [];
 
 if (quizId) {
-    const quizzes = JSON.parse(localStorage.getItem('quizzes')) || {};
+    // const quizzes = JSON.parse(localStorage.getItem('quizzes')) || {};
+    let quizzes = await getQuizzes()
+
     const quiz = Object.entries(quizzes).find(([id, questions]) => id === quizId || id === uuidToString(quizId));
     if (quiz) {
         questions = quiz[1];
@@ -17,14 +21,39 @@ if (quizId) {
     questionList.innerHTML = '<p>No quiz ID specified.</p>';
 }
 
-saveButton.addEventListener('click', () => {
-    const quizzes = JSON.parse(localStorage.getItem('quizzes')) || {};
+
+async function getQuizzes() {
+    const response = await fetch('/api/quizzes', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      return null;
+    }
+  }
+
+saveButton.addEventListener('click', async () => {
+    // const quizzes = JSON.parse(localStorage.getItem('quizzes')) || {};
+    let quizzes = await getQuizzes()
+
     const quizIndex = Object.keys(quizzes).findIndex((id) => id === quizId || id === uuidToString(quizId));
     if (quizIndex !== -1) {
         const title = document.getElementById('editQuizTitle').value;
         questions.title = title;
         quizzes[quizId] = questions;
         localStorage.setItem('quizzes', JSON.stringify(quizzes));
+        
+        await fetch(`/api/quizzes/${quizId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ quiz: quizzes[quizId] }),
+        });
         alert('Quiz saved successfully!');
     } else {
         alert('Quiz not found.');
@@ -153,3 +182,4 @@ function displayQuestions() {
 function uuidToString(uuid) {
     return uuid.replace(/-/g, '');
 }
+})();

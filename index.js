@@ -3,6 +3,7 @@ const app = express();
 const login = require('./util/login.js');
 const create = require('./util/create.js');
 const dashboard = require('./util/dashboard.js');
+const edit = require('./util/edit.js');
 
 let scores = {}
 let quizzes = {}
@@ -79,10 +80,11 @@ apiRouter.delete('/quizzes/', async (req, res) => {
 });
 
 // editQuiz
-apiRouter.post('/quizzes/:quizId', (req, res) => {
+apiRouter.put('/quizzes/:quizId', async (req, res) => {
   const body = req.body
   const quizId = req.params.quizId
-  res.send(users);
+  const quiz = await edit.editQuiz(body, quizId, quizzes)
+  res.status(200).send(quiz);
 });
 
 // deleteQuizId
