@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const login = require('./util/login.js');
 const create = require('./util/create.js');
+const dashboard = require('./util/dashboard.js');
 
 let scores = {}
 let quizzes = {}
@@ -85,9 +86,10 @@ apiRouter.post('/quizzes/:quizId', (req, res) => {
 });
 
 // deleteQuizId
-apiRouter.delete('/quizzes/:quizId', (req, res) => {
+apiRouter.delete('/quizzes/:quizId', async (req, res) => {
   const quizId = req.params.quizId
-  res.send(scores);
+  const quizzesStorage = await dashboard.deleteQuiz(quizId, quizzes)
+  res.status(204).send();
 });
 
 // loginUser

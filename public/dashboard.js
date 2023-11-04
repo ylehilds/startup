@@ -41,6 +41,20 @@ async function getQuizzes() {
   }
 }
 
+async function deleteQuiz(quizId) {
+  const response = await fetch(`/api/quizzes/${quizId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+  if (response.status === 204) {
+    console.log('delete successful')
+  } else {
+    alert('Error deleting quiz.');
+  }
+}
+
 async function creatingDashboard(type) {
     const users = await getUsers()
     const user = getUser()
@@ -93,7 +107,8 @@ async function creatingDashboard(type) {
       deleteButton.classList.add('btn', 'btn-danger');
       deleteButton.addEventListener('click', () => {
         // Now I need to remove it from the master quizzes list
-        delete allQuizzes[quizId];
+        // delete allQuizzes[quizId];
+        deleteQuiz(quizId);
         // TODO: call the backend to delete the quiz
         
         // save the changes to local storage
