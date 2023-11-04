@@ -59,9 +59,9 @@ apiRouter.get('/quizzes', (req, res) => {
 });
 
 // getQuizzesQuizId
-apiRouter.get('/quizzes/:quizId', (req, res) => {
+apiRouter.get('/quizzes/:quizId', async (req, res) => {
 const quizId = req.params.quizId
-  res.send(scores);
+  await res.status(200).send(quizzes[quizId]);
 });
 
 // createQuiz

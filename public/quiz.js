@@ -1,3 +1,4 @@
+(async function() {
 const quizId = new URLSearchParams(window.location.search).get('quizId');
 let questions = [];
 
@@ -36,26 +37,26 @@ function revealResults() {
   results.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
   
   // start of this will be refactored once login/db is implemented
-  const users = JSON.parse(localStorage.getItem('users'));
-  const userIndex = users.findIndex(user => user.isLoggedIn == true);
-  const user = users[userIndex];
+  const user = JSON.parse(localStorage.getItem('user'));
+  // const userIndex = users.findIndex(user => user.isLoggedIn == true);
+  // const user = users[userIndex];
   const score = numCorrect;
   const scoreObject = {
     quizId,
     score,
     username: user.username
   }
-  const userScoreIndex = user.scores.findIndex(score => score.quizId == quizId);
+  // const userScoreIndex = user.scores.findIndex(score => score.quizId == quizId);
 
-  if (userScoreIndex == -1) {
-    user.scores.push(scoreObject);
-  } else {
-    user.scores[userScoreIndex].score = scoreObject.score;
-  }
-  user.lastUpdated = new Date().toLocaleString();
+  // if (userScoreIndex == -1) {
+  //   user.scores.push(scoreObject);
+  // } else {
+  //   user.scores[userScoreIndex].score = scoreObject.score;
+  // }
+  // user.lastUpdated = new Date().toLocaleString();
 
-  users[userIndex] = user;
-  localStorage.setItem('users', JSON.stringify(users));
+  // users[userIndex] = user;
+  // localStorage.setItem('users', JSON.stringify(users));
   
   // end of this will be refactored once login/db is implemented
 
@@ -157,12 +158,11 @@ const submitButton = document.getElementById('submit');
 const results = document.getElementById('results');
 const quizContainer = document.getElementById('quiz');
 
-const quizQuestions = localStorage.getItem("quizzes");
-questions = JSON.parse(quizQuestions);
-// const myQuestions = questions;
-let myQuestions = []
+const quizQuestions = await init(quizId);
+const myQuizQuestions = quizQuestions.questions;
+let myQuestions = [];
 
-questions[quizId].questions.forEach((question, index) => {
+myQuizQuestions.forEach((question, index) => {
   const adjustFormatQuestion = {
     question: question.question,
     answers: {
@@ -188,3 +188,27 @@ displaySlide(currentSlide);
 previousButton.addEventListener("click", displayPreviousSlide);
 submitButton.addEventListener('click', revealResults);
 nextButton.addEventListener("click", displayNextSlide);
+
+
+async function getQuizQuestions(quizId) {
+  const response = await fetch(`/api/quizzes/${quizId}`, {
+    method: "GET",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+  // Store what the service gave us as the high scores
+  const quizQuestions = await response.json();
+  return quizQuestions // parses JSON response into native JavaScript objects
+}
+
+async function init(quizId) {
+  return await getQuizQuestions(quizId)
+}
+})();
