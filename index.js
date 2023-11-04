@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
+const login = require('./util/login.js');
 
-let scores = {};
-// let users = [];
+let scores = {}
+let quizzes = []
+let users = []
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -17,20 +19,52 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-// // signupUser
-// apiRouter.post('/signup', (req, res) => {
-//   res.send(scores);
-// });
+// signupUser
+apiRouter.post('/signup', (req, res) => {
+  try {
+  const body = req.body
+  const username = body.username
+  const password = body.password
+  if (!login.isUserAlreadyExist(username, users)) {
+    const user = login.signup(username, password, users)
+    res.status(200).send(user)
+  }
+} catch (error) {
+  console.error(error)
+}
+  res.status(409).send()
+});
 
-// // loginUser
-// apiRouter.post('/user', (req, res) => {
-//   res.send(scores);
-// });
+// signinUser
+apiRouter.post('/signin', (req, res) => {
+  try {
+  const body = req.body
+  const username = body.username
+  const password = body.password
+  if (login.isUserAlreadyExist(username, users)) {
+    const user = login.signin(username, password, users)
+    res.status(200).send(user)
+  }
+} catch (error) {
+  console.error(error)
+}
+  res.status(409).send()
+});
 
-// // logoutUser
-// apiRouter.delete('/user', (req, res) => {
-//   res.send(scores);
-// });
+// loginUser
+apiRouter.post('/user', (req, res) => {
+  res.send(scores);
+});
+
+// logoutUser
+apiRouter.delete('/user', (req, res) => {
+  res.send(scores);
+});
+
+// GetScores
+apiRouter.get('/users', (_req, res) => {
+  res.send(users);
+});
 
 // GetScores
 apiRouter.get('/scores', (_req, res) => {
