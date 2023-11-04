@@ -1,26 +1,36 @@
 function getUsername() {
-    let users = localStorage.getItem("users")
-    if(users) {
-        users = JSON.parse(users)
-    } else {
-        users = []
-        localStorage.setItem("users", JSON.stringify(users))
-    }
-    let currentUserIndex = users.findIndex(user => user.isLoggedIn == true);
-    if (currentUserIndex == -1) {
-      alert("You are not logged in");
-      return;
-    } else {
-        document.getElementById("username").textContent = users[currentUserIndex].username
-    }
+    let user = getUser()
+    if (user) document.getElementById("username").textContent = user.username
+}
+
+function getUser() {
+  let user = localStorage.getItem("user")
+  if (user) {
+    user = JSON.parse(user)
+    return user
+  }
 }
 
 getUsername()
 
-function creatingDashboard(type) {
+async function getUsers() {
+  const response = await fetch('/api/users', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  if (response.status === 200) {
+    return response.json();
+  } else {
+    return null;
+  }
 
-    const users = JSON.parse(localStorage.getItem('users'));
-    const user = users.find(user => user.isLoggedIn == true);
+}
+
+async function creatingDashboard(type) {
+    const users = await getUsers()
+    const user = getUser()
     let quizzes = localStorage.getItem("quizzes")
     if (quizzes) {
       quizzes = JSON.parse(quizzes);
