@@ -34,14 +34,16 @@ function revealResults() {
   });
 
   results.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-  // const quizzes = JSON.parse(localStorage.getItem('quizzes'));
+  
+  // start of this will be refactored once login/db is implemented
   const users = JSON.parse(localStorage.getItem('users'));
   const userIndex = users.findIndex(user => user.isLoggedIn == true);
   const user = users[userIndex];
   const score = numCorrect;
   const scoreObject = {
     quizId,
-    score
+    score,
+    username: user.username
   }
   const userScoreIndex = user.scores.findIndex(score => score.quizId == quizId);
 
@@ -54,8 +56,34 @@ function revealResults() {
 
   users[userIndex] = user;
   localStorage.setItem('users', JSON.stringify(users));
-  // localStorage.setItem('quizzes', JSON.stringify(quizzes));
+  
+  // end of this will be refactored once login/db is implemented
+
+  submitScore(user.id, scoreObject);
+
   alert('Quiz submitted successfully!');
+}
+
+async function submitScore(userId, score) {
+  const response = await fetch(`/api/${userId}/score`, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(score), // body data type must match "Content-Type" header
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+  // Store what the service gave us as the high scores
+  const scores = await response.json();
+  return scores // parses JSON response into native JavaScript objects 
 }
 
 // Method placeholder before we start using websockets

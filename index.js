@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+let scores = {};
+// let users = [];
+
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -14,46 +17,58 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+// // signupUser
+// apiRouter.post('/signup', (req, res) => {
+//   res.send(scores);
+// });
+
+// // loginUser
+// apiRouter.post('/user', (req, res) => {
+//   res.send(scores);
+// });
+
+// // logoutUser
+// apiRouter.delete('/user', (req, res) => {
+//   res.send(scores);
+// });
+
 // GetScores
 apiRouter.get('/scores', (_req, res) => {
   res.send(scores);
 });
 
+// scores are saved in memory and disappear whenever the service is restarted.
 // SubmitScore
-apiRouter.post('/score', (req, res) => {
-  scores = updateScores(req.body, scores);
-  res.send(scores);
-});
+apiRouter.post('/:userId/score', (req, res) => {
+  const body = req.body
+  const userId = req.params.userId
 
-// Return the application's default page if the path is unknown
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
-// updateScores considers a new score for inclusion in the high scores.
-// The high scores are saved in memory and disappear whenever the service is restarted.
-let scores = [];
-function updateScores(newScore, scores) {
-  let found = false;
-  for (const [i, prevScore] of scores.entries()) {
-    if (newScore.score > prevScore.score) {
-      scores.splice(i, 0, newScore);
-      found = true;
-      break;
+  if (scores[userId]) {
+    const userScores = scores[userId].scores;
+    const userScoreIndex = userScores.findIndex(score => score.quizId == body.quizId);
+    if (userScoreIndex == -1) {
+      scores[userId].scores.push(body)
+    } else {
+      scores[userId].scores[userScoreIndex].score = body.score;
     }
+  } else {
+    scores[userId] = { scores: [ body ] };
   }
-
-  if (!found) {
-    scores.push(newScore);
-  }
+  scores[userId].lastUpdated = new Date().toLocaleString();
+  scores[userId].username = body.username
 
   if (scores.length > 10) {
     scores.length = 10;
   }
 
-  return scores;
-}
+  res.send(scores)
+})
+
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' })
+})
+
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`)
+})
