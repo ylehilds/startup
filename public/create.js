@@ -2,7 +2,7 @@ const questionForm = document.getElementById('question-form');
 const questionList = document.getElementById('question-list');
 const quizId = uuidv4();
 
-questionForm.addEventListener('submit', (event) => {
+questionForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const quizTitle = document.getElementById('quizTitle').value;
   const question = {
@@ -31,32 +31,47 @@ questionForm.addEventListener('submit', (event) => {
   const currentValue = inputToSkip.value;
   document.getElementById('question-form').reset();
   inputToSkip.value = currentValue;
-  saveQuestionToLocalStorage(question, quizId, quizTitle);
+  await saveQuestion(question, quizId, quizTitle);
 });
 
 questionList.addEventListener('click', (event) => {
   if (event.target.classList.contains('delete-button')) {
     event.target.parentElement.remove();
-    deleteQuestionFromLocalStorage(event.target.parentElement, quizId);
+    deleteQuestion(event.target.parentElement, quizId);
   }
 });
 
-function saveQuestionToLocalStorage(question, quizId, quizTitle) {
-    const users = JSON.parse(localStorage.getItem('users'));
-    const user = users.find(user => user.isLoggedIn == true);
-    let quizzes = JSON.parse(localStorage.getItem('quizzes')) || {};
-    quizzes[quizId] = quizzes[quizId] || { title: quizTitle, questions: [] , creatorId: user.id};
-    quizzes[quizId].questions.push(question);
-    localStorage.setItem('quizzes', JSON.stringify(quizzes));
+async function saveQuestion(question, quizId, quizTitle) {
+    const user = JSON.parse(localStorage.getItem('user'))
+    const response = await fetch('/api/quizzes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ question, quizTitle, quizId, user })
+    });
+    if (response.status === 201) {
+      console.log(await response.json())
+    } else {
+      alert('Error creating quiz/question.');
+    }
   }
 
-function deleteQuestionFromLocalStorage(li, quizId) {
-  let questions = JSON.parse(localStorage.getItem('quizzes'))[quizId] || [];
+async function deleteQuestion(li, quizId) {
+  const user = JSON.parse(localStorage.getItem('user'))
   const questionText = li.querySelector('h3').textContent;
-  questions = questions.filter((question) => question.question !== questionText);
-  let quizzes = JSON.parse(localStorage.getItem('quizzes')) || {};
-  quizzes[quizId] = questions;
-  localStorage.setItem('quizzes', JSON.stringify(quizzes));
+  const response = await fetch('/api/quizzes', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ question, quizTitle, quizId, user, questionText })
+  });
+  if (response.status === 204) {
+    console.log('delete successful')
+  } else {
+    alert('Error creating quiz/question.');
+  }
 }
 
 function uuidv4() {

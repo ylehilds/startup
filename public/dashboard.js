@@ -1,33 +1,64 @@
 function getUsername() {
-    let users = localStorage.getItem("users")
-    if(users) {
-        users = JSON.parse(users)
-    } else {
-        users = []
-        localStorage.setItem("users", JSON.stringify(users))
-    }
-    let currentUserIndex = users.findIndex(user => user.isLoggedIn == true);
-    if (currentUserIndex == -1) {
-      alert("You are not logged in");
-      return;
-    } else {
-        document.getElementById("username").textContent = users[currentUserIndex].username
-    }
+    let user = getUser()
+    if (user) document.getElementById("username").textContent = user.username
+}
+
+function getUser() {
+  let user = localStorage.getItem("user")
+  if (user) {
+    user = JSON.parse(user)
+    return user
+  }
 }
 
 getUsername()
 
-function creatingDashboard(type) {
+async function getUsers() {
+  const response = await fetch('/api/users', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  if (response.status === 200) {
+    return response.json();
+  } else {
+    return null;
+  }
+}
 
-    const users = JSON.parse(localStorage.getItem('users'));
-    const user = users.find(user => user.isLoggedIn == true);
-    let quizzes = localStorage.getItem("quizzes")
-    if (quizzes) {
-      quizzes = JSON.parse(quizzes);
-    } else {
-      quizzes = {};
-      localStorage.setItem("quizzes", JSON.stringify(quizzes));
+async function getQuizzes() {
+  const response = await fetch('/api/quizzes', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  if (response.status === 200) {
+    return response.json();
+  } else {
+    return null;
+  }
+}
+
+async function deleteQuiz(quizId) {
+  const response = await fetch(`/api/quizzes/${quizId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
     }
+  });
+  if (response.status === 204) {
+    console.log('delete successful')
+  } else {
+    alert('Error deleting quiz.');
+  }
+}
+
+async function creatingDashboard(type) {
+    const users = await getUsers()
+    const user = getUser()
+    let quizzes = await getQuizzes()
 
     let allQuizzes = quizzes
     if (type == 'myDashboard') quizzes = Object.fromEntries(Object.entries(quizzes).filter(([key, value]) => value.creatorId.includes(user.id)));
@@ -75,12 +106,7 @@ function creatingDashboard(type) {
       deleteButton.innerText = 'Delete';
       deleteButton.classList.add('btn', 'btn-danger');
       deleteButton.addEventListener('click', () => {
-        // Now I need to remove it from the master quizzes list
-        delete allQuizzes[quizId];
-        
-        // save the changes to local storage
-        const updatedQuizzes = JSON.stringify(allQuizzes);
-        localStorage.setItem('quizzes', updatedQuizzes);
+        deleteQuiz(quizId);
         window.location.reload();        
       });
       buttonGroup.appendChild(deleteButton);
@@ -92,9 +118,15 @@ function creatingDashboard(type) {
   
     return quizList;
   }
-  
-  const dashboard = document.getElementById('myDashboard');
-  dashboard.appendChild(creatingDashboard('myDashboard'));
 
-  const commDashboard = document.getElementById('communityDashboard');
-  commDashboard.appendChild(creatingDashboard('communityDashboard'));
+  async function init() {
+    let dashboard = document.getElementById('myDashboard')
+    dashboard.appendChild(await creatingDashboard('myDashboard'));
+  
+    let commDashboard = document.getElementById('communityDashboard')
+    commDashboard.appendChild(await creatingDashboard('communityDashboard'))
+  }
+
+  init()
+  
+  

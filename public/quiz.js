@@ -1,3 +1,4 @@
+(async function() {
 const quizId = new URLSearchParams(window.location.search).get('quizId');
 let questions = [];
 
@@ -34,28 +35,39 @@ function revealResults() {
   });
 
   results.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-  // const quizzes = JSON.parse(localStorage.getItem('quizzes'));
-  const users = JSON.parse(localStorage.getItem('users'));
-  const userIndex = users.findIndex(user => user.isLoggedIn == true);
-  const user = users[userIndex];
+  
+  const user = JSON.parse(localStorage.getItem('user'));
   const score = numCorrect;
   const scoreObject = {
     quizId,
-    score
+    score,
+    username: user.username
   }
-  const userScoreIndex = user.scores.findIndex(score => score.quizId == quizId);
 
-  if (userScoreIndex == -1) {
-    user.scores.push(scoreObject);
-  } else {
-    user.scores[userScoreIndex].score = scoreObject.score;
-  }
-  user.lastUpdated = new Date().toLocaleString();
-
-  users[userIndex] = user;
-  localStorage.setItem('users', JSON.stringify(users));
-  // localStorage.setItem('quizzes', JSON.stringify(quizzes));
+  submitScore(user.id, scoreObject);
   alert('Quiz submitted successfully!');
+}
+
+async function submitScore(userId, score) {
+  const response = await fetch(`/api/${userId}/score`, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(score), // body data type must match "Content-Type" header
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+  // Store what the service gave us as the high scores
+  const scores = await response.json();
+  return scores // parses JSON response into native JavaScript objects 
 }
 
 // Method placeholder before we start using websockets
@@ -129,12 +141,11 @@ const submitButton = document.getElementById('submit');
 const results = document.getElementById('results');
 const quizContainer = document.getElementById('quiz');
 
-const quizQuestions = localStorage.getItem("quizzes");
-questions = JSON.parse(quizQuestions);
-// const myQuestions = questions;
-let myQuestions = []
+const quizQuestions = await init(quizId);
+const myQuizQuestions = quizQuestions.questions;
+let myQuestions = [];
 
-questions[quizId].questions.forEach((question, index) => {
+myQuizQuestions.forEach((question, index) => {
   const adjustFormatQuestion = {
     question: question.question,
     answers: {
@@ -160,3 +171,27 @@ displaySlide(currentSlide);
 previousButton.addEventListener("click", displayPreviousSlide);
 submitButton.addEventListener('click', revealResults);
 nextButton.addEventListener("click", displayNextSlide);
+
+
+async function getQuizQuestions(quizId) {
+  const response = await fetch(`/api/quizzes/${quizId}`, {
+    method: "GET",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+  // Store what the service gave us as the high scores
+  const quizQuestions = await response.json();
+  return quizQuestions // parses JSON response into native JavaScript objects
+}
+
+async function init(quizId) {
+  return await getQuizQuestions(quizId)
+}
+})();
