@@ -11,27 +11,27 @@ Quiz Maker is a fun application that lets you build an online quiz platform wher
 
 #### Login
 <!-- ![Login](/images/login.png) -->
-<img src="./images/login.png" width="600" height="400">
+<img src="./public/images/login.png" width="600" height="400">
 
 #### Dashboard
 <!-- ![Commitment](/images/dashboard.png) -->
-<img src="./images/dashboard.png" width="600" height="400">
+<img src="./public/images/dashboard.png" width="600" height="400">
 
 #### Create
 <!-- ![Commitment](/images/create.png) -->
-<img src="./images/create.png" width="600" height="400">
+<img src="./public/images/create.png" width="600" height="400">
 
 #### Edit
 <!-- ![Commitment](/images/edit.png) -->
-<img src="./images/edit.png" width="600" height="400">
+<img src="./public/images/edit.png" width="600" height="400">
 
 #### Scoreboard
 <!-- ![Dashboard](/images/scoreboard.png) -->
-<img src="./images/scoreboard.png" width="600" height="400">
+<img src="./public/images/scoreboard.png" width="600" height="400">
 
 #### About
 <!-- ![Add/Edit Workout](/images/about.png) -->
-<img src="./images/about.png" width="600" height="400">
+<img src="./public/images/about.png" width="600" height="400">
 
 
 ### Key Features
