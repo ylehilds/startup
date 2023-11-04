@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const login = require('./util/login.js');
+const create = require('./util/create.js');
 
 let scores = {}
 let quizzes = {}
@@ -63,9 +64,17 @@ const quizId = req.params.quizId
 });
 
 // createQuiz
-apiRouter.post('/quizzes', (req, res) => {
+apiRouter.post('/quizzes', async (req, res) => {
   const body = req.body
-  res.send(users);
+  const quiz = await create.createQuiz(body, quizzes)
+  res.status(201).send(quiz);
+});
+
+// deleteQuestionQuizId
+apiRouter.delete('/quizzes/', async (req, res) => {
+  const body = req.body
+  const quiz = await create.deleteQuestion(body, quizzes)
+  res.status(204).send();
 });
 
 // editQuiz
