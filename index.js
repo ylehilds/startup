@@ -4,6 +4,7 @@ const login = require('./util/login.js');
 const create = require('./util/create.js');
 const dashboard = require('./util/dashboard.js');
 const edit = require('./util/edit.js');
+const DB = require('./util/database.js');
 
 let scores = {}
 let quizzes = {}
@@ -105,40 +106,45 @@ apiRouter.delete('/user', (req, res) => {
 });
 
 // GetScores
-apiRouter.get('/users', (_req, res) => {
+apiRouter.get('/users', (req, res) => {
   res.send(users);
 });
 
 // GetScores
-apiRouter.get('/scores', (_req, res) => {
-  res.send(scores);
+apiRouter.get('/scores', async (req, res) => {
+  const scoresArray = await DB.getHighScores();
+  const scoresObject = scoresArray.reduce((obj, item) => {
+    const userId = Object.keys(item).find(key => key !== '_id');
+    obj[userId] = item[userId];
+    return obj;
+  }, {});
+  res.send(scoresObject);
 });
 
 // scores are saved in memory and disappear whenever the service is restarted.
 // SubmitScore
-apiRouter.post('/:userId/score', (req, res) => {
+apiRouter.post('/:userId/score', async (req, res) => {
   const body = req.body
   const userId = req.params.userId
+  let result
 
-  if (scores[userId]) {
-    const userScores = scores[userId].scores;
-    const userScoreIndex = userScores.findIndex(score => score.quizId == body.quizId);
+  const userScores = await DB.getUserScores(userId);
+  if (userScores.length > 0) {
+    const userScoreIndex = userScores[0][userId].scores.findIndex(score => score.quizId == body.quizId);
     if (userScoreIndex == -1) {
-      scores[userId].scores.push(body)
+      userScores[0][userId].scores.push(body);
+      result = await DB.addQuizScores({ userId, scores: userScores[0][userId].scores, username: body.username });
     } else {
-      scores[userId].scores[userScoreIndex].score = body.score;
+      userScores[0][userId].scores[userScoreIndex].score = body.score;
+      result = await DB.addQuizScores({ userId, scores: userScores[0][userId].scores, username: body.username });
     }
   } else {
-    scores[userId] = { scores: [ body ] };
+    const newScore = {};
+    newScore[userId] = { scores: [ body ], lastUpdated: new Date().toLocaleString(), username: body.username };
+    result = await DB.addScore(newScore);
   }
-  scores[userId].lastUpdated = new Date().toLocaleString();
-  scores[userId].username = body.username
-
-  if (scores.length > 10) {
-    scores.length = 10;
-  }
-
-  res.send(scores)
+  console.log(result)
+  res.status(200).send(result);
 })
 
 // Return the application's default page if the path is unknown
