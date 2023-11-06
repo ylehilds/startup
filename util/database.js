@@ -33,26 +33,34 @@ async function getHighScores() {
 }
 
 async function addQuizScores(scores) {
-
-  // Create a filter for movies with the title "Random Harvest"
-  const filter = { [scores.userId]: { $exists: true } };
-
-  /* Set the upsert option to insert a document if no documents match
-    the filter */
+  const filter = { userId: scores.userId };
   const options = { upsert: true };
-  // Specify the update to set a value for the plot field
   const updateDoc = {
+    $push: {
+      scores: scores.scores,
+    },
     $set: {
-      [scores.userId]: { scores: scores.scores, lastUpdated: new Date().toLocaleString(), username: scores.username }
+      lastUpdated: new Date().toLocaleString(),
     },
   };
-  // Update the first document that matches the filter
   const result = await scoreCollection.updateOne(filter, updateDoc, options);
   return result;
 }
 
+async function updateQuizScore(userId, quizId, newScore) {
+  const filter = { userId: userId, "scores.quizId": quizId };
+  const updateDoc = {
+    $set: {
+      "scores.$": newScore,
+      lastUpdated: new Date().toLocaleString(),
+    },
+  };
+  const result = await scoreCollection.updateOne(filter, updateDoc);
+  return result;
+}
+
 async function getUserScores(userId) {
-  const query = { [userId]: { $exists: true } };
+  const query = { userId: userId };
   const options = {
     sort: { score: -1 },
     limit: 10,
@@ -61,4 +69,4 @@ async function getUserScores(userId) {
   return cursor.toArray();
 }
 
-module.exports = { addScore, getHighScores, getUserScores, addQuizScores };
+module.exports = { addScore, getHighScores, getUserScores, addQuizScores, updateQuizScore };

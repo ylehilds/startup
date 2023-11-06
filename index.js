@@ -113,12 +113,7 @@ apiRouter.get('/users', (req, res) => {
 // GetScores
 apiRouter.get('/scores', async (req, res) => {
   const scoresArray = await DB.getHighScores();
-  const scoresObject = scoresArray.reduce((obj, item) => {
-    const userId = Object.keys(item).find(key => key !== '_id');
-    obj[userId] = item[userId];
-    return obj;
-  }, {});
-  res.status(200).send(scoresObject);
+  res.status(200).send(scoresArray);
 });
 
 // scores are saved in memory and disappear whenever the service is restarted.
@@ -130,17 +125,14 @@ apiRouter.post('/:userId/score', async (req, res) => {
 
   const userScores = await DB.getUserScores(userId);
   if (userScores.length > 0) {
-    const userScoreIndex = userScores[0][userId].scores.findIndex(score => score.quizId == body.quizId);
+    const userScoreIndex = userScores[0].scores.findIndex(score => score.quizId == body.quizId);
     if (userScoreIndex == -1) {
-      userScores[0][userId].scores.push(body);
-      result = await DB.addQuizScores({ userId, scores: userScores[0][userId].scores, username: body.username });
+      result = await DB.addQuizScores({ userId, scores: body });
     } else {
-      userScores[0][userId].scores[userScoreIndex].score = body.score;
-      result = await DB.addQuizScores({ userId, scores: userScores[0][userId].scores, username: body.username });
+      result = await DB.updateQuizScore(userId, body.quizId, body );
     }
   } else {
-    const newScore = {};
-    newScore[userId] = { scores: [ body ], lastUpdated: new Date().toLocaleString(), username: body.username };
+    const newScore = { userId: userId, scores: [ body ], lastUpdated: new Date().toLocaleString(), username: body.username};
     result = await DB.addScore(newScore);
   }
   console.log(result)
