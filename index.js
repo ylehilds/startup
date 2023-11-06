@@ -118,7 +118,7 @@ apiRouter.get('/scores', async (req, res) => {
     obj[userId] = item[userId];
     return obj;
   }, {});
-  res.send(scoresObject);
+  res.status(200).send(scoresObject);
 });
 
 // scores are saved in memory and disappear whenever the service is restarted.
