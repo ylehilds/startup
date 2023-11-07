@@ -13,12 +13,12 @@ async function signUp(users) {
     if (username && password) {
         const user = await signUpUser(username, password)
         if (user) {
+            localStorage.setItem("user", JSON.stringify(user));  
             window.location = "dashboard.html";
         } else {
             alert("User already exists, please create a different username!")
             return
         }
-        localStorage.setItem("user", JSON.stringify(user));  
   } else {
     alert("SignUp failed");
   }
@@ -30,12 +30,12 @@ async function signIn(username, password) {
     if (username && password) {
         const user = await signInUser(username, password)
         if (user) {
+            localStorage.setItem("user", JSON.stringify(user));
             window.location = "dashboard.html";
         } else {
             alert("Invalid Username/Password")
             return
         }
-        localStorage.setItem("user", JSON.stringify(user));
   } else {
     alert("SignIn failed");
   }

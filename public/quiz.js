@@ -142,7 +142,7 @@ const results = document.getElementById('results');
 const quizContainer = document.getElementById('quiz');
 
 const quizQuestions = await init(quizId);
-const myQuizQuestions = quizQuestions.questions;
+const myQuizQuestions = quizQuestions[0].questions;
 let myQuestions = [];
 
 myQuizQuestions.forEach((question, index) => {

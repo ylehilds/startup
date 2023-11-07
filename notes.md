@@ -1492,7 +1492,100 @@ These port numbers are well-known and standardized across the internet to ensure
 	0.	What will the following code using Promises output when executed?
 ```
 
+## Some MongoDB methods & syntax:
 
+```javascript
+exports.addScore = async function (score) {
+  dbCollection = db.collection('scores');
+  const result = await dbCollection.insertOne(score);
+  return result;
+}
+
+exports.getHighScores = async function () {
+  dbCollection = db.collection('scores');
+  const query = { };
+  const options = {
+    sort: { score: -1 },
+    limit: 10,
+  };
+  const cursor = await dbCollection.find(query, options);
+  return cursor.toArray();
+}
+
+exports.addQuizScores = async function (scores) {
+  dbCollection = db.collection('scores');
+  const filter = { userId: scores.userId };
+  const options = { upsert: true };
+  const updateDoc = {
+    $push: {
+      scores: scores.scores,
+    },
+    $set: {
+      lastUpdated: new Date().toLocaleString(),
+    },
+  };
+  const result = await dbCollection.updateOne(filter, updateDoc, options);
+  return result;
+}
+
+exports.addQuiz = async function (scores) {
+  dbCollection = db.collection('quizzes');
+  const filter = { userId: scores.userId };
+  const options = { upsert: true };
+  const updateDoc = {
+    $push: {
+      questions: scores.scores,
+    },
+    $set: {
+      lastUpdated: new Date().toLocaleString(),
+    },
+  };
+  const result = await dbCollection.updateOne(filter, updateDoc, options);
+  return result;
+}
+
+exports.addQuestion = async function (data) {
+  dbCollection = db.collection('quizzes');
+  const filter = { quizId: data.quizId };
+  const options = { upsert: true };
+  const updateDoc = {
+    $push: {
+      questions: data.question,
+    }
+  };
+  const result = await dbCollection.updateOne(filter, updateDoc, options);
+  return result;
+}
+
+exports.editQuestion = async function (data, quizId) {
+  dbCollection = db.collection('quizzes');
+  const filter = { quizId: quizId};
+  const updateDoc = {
+    $set: {
+      questions: data.questions,
+    },
+  };
+  const result = await dbCollection.updateOne(filter, updateDoc);
+  return result;
+}
+
+exports.deleteQuestion = async function (question) {
+  dbCollection = db.collection('quizzes');
+  await dbCollection.updateOne(
+    { quizId: question.quizId },
+    { $pull: { questions: { question: question.questionText } } }
+);
+return true
+}
+
+exports.deleteQuiz = async function (quizId) {
+  dbCollection = db.collection('quizzes');
+  await dbCollection.deleteOne(
+    { quizId: quizId }
+);
+return true
+}
+```
 -----------------------------------------------------------------------------
 // MD helper
 

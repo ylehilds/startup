@@ -9,10 +9,10 @@ let questions = [];
 if (quizId) {
     let quizzes = await getQuizzes()
 
-    const quiz = Object.entries(quizzes).find(([id, questions]) => id === quizId || id === uuidToString(quizId));
+    const quiz = quizzes.find(({quizId: id}) => id === quizId);
     if (quiz) {
-        questions = quiz[1];
-        displayQuestions();
+        questions = quiz.questions;
+        displayQuestions(quiz);
     } else {
         questionList.innerHTML = '<p>Quiz not found.</p>';
     }
@@ -38,18 +38,20 @@ async function getQuizzes() {
 saveButton.addEventListener('click', async () => {
     let quizzes = await getQuizzes()
 
-    const quizIndex = Object.keys(quizzes).findIndex((id) => id === quizId || id === uuidToString(quizId));
-    if (quizIndex !== -1) {
+    // const quizIndex = Object.keys(quizzes).findIndex((id) => id === quizId || id === uuidToString(quizId));
+    const quiz = quizzes.find(({quizId: id}) => id === quizId);
+
+    if (quiz) {
         const title = document.getElementById('editQuizTitle').value;
         questions.title = title;
-        quizzes[quizId] = questions;
+        // quizzes[quizId] = questions;
         
         await fetch(`/api/quizzes/${quizId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ quiz: quizzes[quizId] }),
+            body: JSON.stringify({ questions: questions }),
         });
         alert('Quiz saved successfully!');
     } else {
@@ -57,11 +59,11 @@ saveButton.addEventListener('click', async () => {
     }
 });
 
-function displayQuestions() {
-    const title = questions.title
+function displayQuestions(quiz) {
+    const title = quiz.title
     document.getElementById('editQuizTitle').value = title;
     questionList.innerHTML = '';
-    questions.questions.forEach((question, index) => {
+    quiz.questions.forEach((question, index) => {
         const li = document.createElement('li');
         li.innerHTML = `
         <div class="question-container">
@@ -100,11 +102,11 @@ function displayQuestions() {
             options: ['', '', '', ''],
             answerIndex: 0,
         };
-        questions.questions.push(question);
+        questions.push(question);
 
-        displayQuestions();
+        displayQuestions(quiz);
 
-        const index = questions.questions.length - 1;
+        const index = quiz.questions.length - 1;
         const questionContainer = questionList.children[index].querySelector('.question-container');
         const editContainer = questionList.children[index].querySelector('.edit-container');
         questionContainer.style.display = 'none';
@@ -120,17 +122,17 @@ function displayQuestions() {
                 alert('Please fill in all fields.');
                 return
             }
-            questions.questions[index].question = questionInput.value;
-            questions.questions[index].options[0] = optionInputs[0].value;
-            questions.questions[index].options[1] = optionInputs[1].value;
-            questions.questions[index].options[2] = optionInputs[2].value;
-            questions.questions[index].options[3] = optionInputs[3].value;
-            questions.questions[index].answerIndex = parseInt(answerInput.value) - 1;
-            displayQuestions();
+            quiz.questions[index].question = questionInput.value;
+            quiz.questions[index].options[0] = optionInputs[0].value;
+            quiz.questions[index].options[1] = optionInputs[1].value;
+            quiz.questions[index].options[2] = optionInputs[2].value;
+            quiz.questions[index].options[3] = optionInputs[3].value;
+            quiz.questions[index].answerIndex = parseInt(answerInput.value) - 1;
+            displayQuestions(quiz);
         });
         editContainer.querySelector('.cancel-button').addEventListener('click', () => {
-            questions.questions.splice(index, 1);
-            displayQuestions();
+            quiz.questions.splice(index, 1);
+            displayQuestions(quiz);
         });
     });
 
@@ -151,13 +153,13 @@ function displayQuestions() {
             optionInputs[0].focus();
             optionInputs[0].setSelectionRange(0, optionInputs[0].value.length);
             editContainer.querySelector('.save-button').addEventListener('click', () => {
-                questions.questions[index].question = questionInput.value;
-                questions.questions[index].options[0] = optionInputs[0].value;
-                questions.questions[index].options[1] = optionInputs[1].value;
-                questions.questions[index].options[2] = optionInputs[2].value;
-                questions.questions[index].options[3] = optionInputs[3].value;
-                questions.questions[index].answerIndex = parseInt(answerInput.value) - 1;
-                displayQuestions();
+                quiz.questions[index].question = questionInput.value;
+                quiz.questions[index].options[0] = optionInputs[0].value;
+                quiz.questions[index].options[1] = optionInputs[1].value;
+                quiz.questions[index].options[2] = optionInputs[2].value;
+                quiz.questions[index].options[3] = optionInputs[3].value;
+                quiz.questions[index].answerIndex = parseInt(answerInput.value) - 1;
+                displayQuestions(quiz);
             });
             editContainer.querySelector('.cancel-button').addEventListener('click', () => {
                 questionContainer.style.display = 'flex';
@@ -170,8 +172,8 @@ function displayQuestions() {
     deleteButtons.forEach((button) => {
         button.addEventListener('click', (event) => {
             const index = event.target.dataset.index;
-            questions.questions.splice(index, 1);
-            displayQuestions();
+            quiz.questions.splice(index, 1);
+            displayQuestions(quiz);
         });
     });
 }

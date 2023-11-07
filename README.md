@@ -114,5 +114,12 @@ For this deliverable I added backend endpoints that get/post/put/delete a quiz, 
 - **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints get/post/put/delete a quiz, get/post for scores, gets/post for users.
 - **Frontend calls service endpoints** - I did this using several fetch function calls to interact with API.
 
+## DB deliverable
+For this deliverable I stored the scores/users/quizzes in the database.
+
+- **MongoDB Atlas database created** - done!
+- **Endpoints for data** - Endpoints now process the data and send it to Mongo.
+- **Stores data in MongoDB** - done!
+
 [Notes link](notes.md)
 
