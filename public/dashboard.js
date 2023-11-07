@@ -60,20 +60,20 @@ async function creatingDashboard(type) {
     const user = getUser()
     let quizzes = await getQuizzes()
 
-    let allQuizzes = quizzes
+    // let allQuizzes = quizzes
     if (type == 'myDashboard') quizzes = Object.fromEntries(Object.entries(quizzes).filter(([key, value]) => value.creatorId.includes(user.id)));
     else if (type == 'communityDashboard') quizzes = Object.fromEntries(Object.entries(quizzes).filter(([key, value]) => !value.creatorId.includes(user.id)));
   
     const quizList = document.createElement('div');
     quizList.classList.add('quiz-list');
 
-    for (const quizId in quizzes) {
-      const quiz = quizzes[quizId];
+    for (const [key, value] of Object.entries(quizzes)) {
+      // const quiz = quizzes[quizId];
       const quizItem = document.createElement('div');
       quizItem.classList.add('quiz-item', 'card', 'mb-3');
   
       const quizTitle = document.createElement('h2');
-      quizTitle.innerText = quiz.title;
+      quizTitle.innerText = value.title;
       quizTitle.classList.add('card-header');
       quizItem.appendChild(quizTitle);
   
@@ -86,7 +86,7 @@ async function creatingDashboard(type) {
       editButton.classList.add('btn', 'btn-primary', 'me-2');
       editButton.addEventListener('click', () => {
         // alert(quizId)
-        window.location.href = `edit.html?quizId=${quizId}`;
+        window.location.href = `edit.html?quizId=${value.quizId}`;
         // handle edit button click
       });
       buttonGroup.appendChild(editButton);
@@ -97,7 +97,7 @@ async function creatingDashboard(type) {
       takeButton.classList.add('btn', 'btn-success', 'me-4');
       takeButton.addEventListener('click', () => {
         // handle take button click
-        window.location.href = `quiz.html?quizId=${quizId}`;
+        window.location.href = `quiz.html?quizId=${value.quizId}`;
       });
       buttonGroup.appendChild(takeButton);
   
@@ -106,7 +106,7 @@ async function creatingDashboard(type) {
       deleteButton.innerText = 'Delete';
       deleteButton.classList.add('btn', 'btn-danger');
       deleteButton.addEventListener('click', () => {
-        deleteQuiz(quizId);
+        deleteQuiz(value.quizId);
         window.location.reload();        
       });
       buttonGroup.appendChild(deleteButton);

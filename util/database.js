@@ -4,7 +4,8 @@ const config = require('./dbConfig.json');
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('startup');
-const scoreCollection = db.collection('scores');
+let dbCollection
+const { ObjectID } = require('mongodb');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -15,24 +16,27 @@ const scoreCollection = db.collection('scores');
   process.exit(1);
 });
 
-async function addScore(score) {
-  const result = await scoreCollection.insertOne(score);
+exports.addScore = async function (score) {
+  dbCollection = db.collection('scores');
+  const result = await dbCollection.insertOne(score);
   return result;
 }
 
-async function getHighScores() {
+exports.getHighScores = async function () {
+  dbCollection = db.collection('scores');
   const query = { };
   const options = {
     sort: { score: -1 },
     limit: 10,
   };
-  const cursor = await scoreCollection.find(query, options);
+  const cursor = await dbCollection.find(query, options);
   return cursor.
   
   toArray();
 }
 
-async function addQuizScores(scores) {
+exports.addQuizScores = async function (scores) {
+  dbCollection = db.collection('scores');
   const filter = { userId: scores.userId };
   const options = { upsert: true };
   const updateDoc = {
@@ -43,11 +47,70 @@ async function addQuizScores(scores) {
       lastUpdated: new Date().toLocaleString(),
     },
   };
-  const result = await scoreCollection.updateOne(filter, updateDoc, options);
+  const result = await dbCollection.updateOne(filter, updateDoc, options);
   return result;
 }
 
-async function updateQuizScore(userId, quizId, newScore) {
+exports.addQuiz = async function (scores) {
+  dbCollection = db.collection('quizzes');
+  const filter = { userId: scores.userId };
+  const options = { upsert: true };
+  const updateDoc = {
+    $push: {
+      questions: scores.scores,
+    },
+    $set: {
+      lastUpdated: new Date().toLocaleString(),
+    },
+  };
+  const result = await dbCollection.updateOne(filter, updateDoc, options);
+  return result;
+}
+
+exports.addQuestion = async function (data) {
+  dbCollection = db.collection('quizzes');
+  const filter = { quizId: data.quizId };
+  const options = { upsert: true };
+  const updateDoc = {
+    $push: {
+      questions: data.question,
+    }
+  };
+  const result = await dbCollection.updateOne(filter, updateDoc, options);
+  return result;
+}
+
+exports.editQuestion = async function (data, quizId) {
+  dbCollection = db.collection('quizzes');
+  const filter = { quizId: quizId};
+  const updateDoc = {
+    $set: {
+      questions: data.questions,
+    },
+  };
+  const result = await dbCollection.updateOne(filter, updateDoc);
+  return result;
+}
+
+exports.deleteQuestion = async function (question) {
+  dbCollection = db.collection('quizzes');
+  await dbCollection.updateOne(
+    { quizId: question.quizId },
+    { $pull: { questions: { question: question.questionText } } }
+);
+return true
+}
+
+exports.deleteQuiz = async function (quizId) {
+  dbCollection = db.collection('quizzes');
+  await dbCollection.deleteOne(
+    { quizId: quizId }
+);
+return true
+}
+
+exports.updateQuizScore = async function (userId, quizId, newScore) {
+  dbCollection = db.collection('scores');
   const filter = { userId: userId, "scores.quizId": quizId };
   const updateDoc = {
     $set: {
@@ -55,18 +118,47 @@ async function updateQuizScore(userId, quizId, newScore) {
       lastUpdated: new Date().toLocaleString(),
     },
   };
-  const result = await scoreCollection.updateOne(filter, updateDoc);
+  const result = await dbCollection.updateOne(filter, updateDoc);
   return result;
 }
 
-async function getUserScores(userId) {
+exports.setQuizzes = async function (quiz) {
+  dbCollection = db.collection('quizzes');
+  const result = await dbCollection.insertOne(quiz);
+  return result;
+}
+
+exports.getUserScores = async function (userId) {
+  dbCollection = db.collection('scores');
   const query = { userId: userId };
   const options = {
     sort: { score: -1 },
     limit: 10,
   };
-  const cursor = await scoreCollection.find(query, options);
+  const cursor = await dbCollection.find(query, options);
   return cursor.toArray();
 }
 
-module.exports = { addScore, getHighScores, getUserScores, addQuizScores, updateQuizScore };
+exports.getQuizzes = async function (quizId) {
+  dbCollection = db.collection('quizzes');
+  const query = { quizId: quizId };
+  const options = {
+    sort: { score: -1 },
+    limit: 10,
+  };
+  const cursor = await dbCollection.find(query, options);
+  return cursor.toArray();
+}
+
+exports.getAllQuizzes = async function () {
+  dbCollection = db.collection('quizzes');
+  const query = { };
+  const options = {
+    sort: { score: -1 },
+    limit: 10,
+  };
+  const cursor = await dbCollection.find(query, options);
+  return cursor.toArray();
+}
+
+// module.exports = { addScore, getHighScores, getUserScores, addQuizScores, updateQuizScore };

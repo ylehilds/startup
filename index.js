@@ -56,8 +56,9 @@ apiRouter.post('/signin', (req, res) => {
 });
 
 // getQuizzes
-apiRouter.get('/quizzes', (req, res) => {
-  res.send(quizzes);
+apiRouter.get('/quizzes', async (req, res) => {
+  const dashboardQuizzes = await dashboard.getQuizzes()
+  res.send(dashboardQuizzes);
 });
 
 // getQuizzesQuizId
@@ -69,29 +70,29 @@ const quizId = req.params.quizId
 // createQuiz
 apiRouter.post('/quizzes', async (req, res) => {
   const body = req.body
-  const quiz = await create.createQuiz(body, quizzes)
+  const quiz = await create.createQuiz(body)
   res.status(201).send(quiz);
 });
 
 // deleteQuestionQuizId
 apiRouter.delete('/quizzes/', async (req, res) => {
   const body = req.body
-  const quiz = await create.deleteQuestion(body, quizzes)
+  const quiz = await create.deleteQuestion(body)
   res.status(204).send();
 });
 
-// editQuiz
+// editQuestionQuizId
 apiRouter.put('/quizzes/:quizId', async (req, res) => {
   const body = req.body
   const quizId = req.params.quizId
-  const quiz = await edit.editQuiz(body, quizId, quizzes)
+  const quiz = await edit.editQuestion(body, quizId)
   res.status(200).send(quiz);
 });
 
 // deleteQuizId
 apiRouter.delete('/quizzes/:quizId', async (req, res) => {
   const quizId = req.params.quizId
-  const quizzesStorage = await dashboard.deleteQuiz(quizId, quizzes)
+  const quizzesStorage = await dashboard.deleteQuiz(quizId)
   res.status(204).send();
 });
 
