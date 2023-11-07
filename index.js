@@ -63,8 +63,9 @@ apiRouter.get('/quizzes', async (req, res) => {
 
 // getQuizzesQuizId
 apiRouter.get('/quizzes/:quizId', async (req, res) => {
-const quizId = req.params.quizId
-  await res.status(200).send(quizzes[quizId]);
+  const quizId = req.params.quizId
+  const quiz = await DB.getQuizzes(quizId);
+  await res.status(200).send(quiz);
 });
 
 // createQuiz
