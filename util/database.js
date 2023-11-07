@@ -30,9 +30,7 @@ exports.getHighScores = async function () {
     limit: 10,
   };
   const cursor = await dbCollection.find(query, options);
-  return cursor.
-  
-  toArray();
+  return cursor.toArray();
 }
 
 exports.addQuizScores = async function (scores) {
