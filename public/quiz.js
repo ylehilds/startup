@@ -41,7 +41,7 @@ function revealResults() {
   const scoreObject = {
     quizId,
     score,
-    username: user.username
+    username: user.userId
   }
 
   submitScore(user.id, scoreObject);
