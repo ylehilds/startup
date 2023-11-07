@@ -1,6 +1,6 @@
 function getUsername() {
     let user = getUser()
-    if (user) document.getElementById("username").textContent = user.username
+    if (user) document.getElementById("username").textContent = user.userId
 }
 
 function getUser() {
@@ -13,19 +13,19 @@ function getUser() {
 
 getUsername()
 
-async function getUsers() {
-  const response = await fetch('/api/users', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  if (response.status === 200) {
-    return response.json();
-  } else {
-    return null;
-  }
-}
+// async function getUser() {
+//   const response = await fetch('/api/user', {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+//   if (response.status === 200) {
+//     return response.json();
+//   } else {
+//     return null;
+//   }
+// }
 
 async function getQuizzes() {
   const response = await fetch('/api/quizzes', {
@@ -56,7 +56,7 @@ async function deleteQuiz(quizId) {
 }
 
 async function creatingDashboard(type) {
-    const users = await getUsers()
+    // const users = await getUsers()
     const user = getUser()
     let quizzes = await getQuizzes()
 

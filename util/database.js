@@ -139,6 +139,24 @@ exports.getUserScores = async function (userId) {
   return cursor.toArray();
 }
 
+exports.getUser = async function (userId) {
+  dbCollection = db.collection('users');
+  const query = { userId: userId };
+  const options = {
+    sort: { score: -1 },
+    limit: 10,
+  };
+  const cursor = await dbCollection.find(query, options);
+  return cursor.toArray();
+}
+
+exports.setUser = async function (userId, password, id) {
+  dbCollection = db.collection('users');
+  const user = { userId: userId, password: password, id: id }
+  const result = await dbCollection.insertOne(user)
+  return result;
+}
+
 exports.getQuizzes = async function (quizId) {
   dbCollection = db.collection('quizzes');
   const query = { quizId: quizId };

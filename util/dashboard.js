@@ -15,3 +15,8 @@ exports.getQuizzes = async function() {
     const quizzes = await DB.getAllQuizzes()
     return quizzes
 }
+
+exports.getUser = async function() {
+    const user = await DB.getUser()
+    return user
+}

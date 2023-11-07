@@ -24,14 +24,14 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // signupUser
-apiRouter.post('/signup', (req, res) => {
+apiRouter.post('/signup', async (req, res) => {
   try {
   const body = req.body
   const username = body.username
   const password = body.password
-  if (!login.isUserAlreadyExist(username, users)) {
-    const user = login.signup(username, password, users)
-    res.status(200).send(user)
+  if (!(await login.isUserAlreadyExist(username))) {
+    const user = await login.signup(username, password)
+    res.status(200).send(user[0])
   }
 } catch (error) {
   console.error(error)
@@ -40,14 +40,14 @@ apiRouter.post('/signup', (req, res) => {
 });
 
 // signinUser
-apiRouter.post('/signin', (req, res) => {
+apiRouter.post('/signin', async (req, res) => {
   try {
   const body = req.body
   const username = body.username
   const password = body.password
-  if (login.isUserAlreadyExist(username, users)) {
-    const user = login.signin(username, password, users)
-    res.status(200).send(user)
+  if (login.isUserAlreadyExist(username)) {
+    const user = await login.signin(username, password)
+    if (user) res.status(200).send(user[0])
   }
 } catch (error) {
   console.error(error)
@@ -108,8 +108,9 @@ apiRouter.delete('/user', (req, res) => {
 });
 
 // GetScores
-apiRouter.get('/users', (req, res) => {
-  res.send(users);
+apiRouter.get('/user', async (req, res) => {
+  const user = await dashboard.getUser()
+  res.send(user);
 });
 
 // GetScores
