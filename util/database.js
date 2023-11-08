@@ -1,11 +1,12 @@
 const { MongoClient } = require('mongodb');
+const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('startup');
 let dbCollection
-const { ObjectID } = require('mongodb');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -15,6 +16,33 @@ const { ObjectID } = require('mongodb');
   console.log(`Unable to connect to database with ${url} because ${ex.message}`);
   process.exit(1);
 });
+
+exports.getUser = function (userId) {
+  dbCollection = db.collection('users');
+  return dbCollection.findOne({ userId: userId });
+}
+
+exports.getUserByToken = function (token) {
+  dbCollection = db.collection('users');
+  return dbCollection.findOne({ token: token });
+}
+
+exports.createUser = async function (userId, password) {
+  dbCollection = db.collection('users');
+
+  // Hash the password before we insert it into the database
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  const user = {
+    userId: userId,
+    password: passwordHash,
+    token: uuid.v4(),
+    id: uuid.v4(),
+  };
+  await dbCollection.insertOne(user);
+
+  return user;
+}
 
 exports.addScore = async function (score) {
   dbCollection = db.collection('scores');
@@ -137,24 +165,6 @@ exports.getUserScores = async function (userId) {
   return cursor.toArray();
 }
 
-exports.getUser = async function (userId) {
-  dbCollection = db.collection('users');
-  const query = { userId: userId };
-  const options = {
-    sort: { score: -1 },
-    limit: 10,
-  };
-  const cursor = await dbCollection.find(query, options);
-  return cursor.toArray();
-}
-
-exports.setUser = async function (userId, password, id) {
-  dbCollection = db.collection('users');
-  const user = { userId: userId, password: password, id: id }
-  const result = await dbCollection.insertOne(user)
-  return result;
-}
-
 exports.getQuizzes = async function (quizId) {
   dbCollection = db.collection('quizzes');
   const query = { quizId: quizId };
@@ -176,5 +186,3 @@ exports.getAllQuizzes = async function () {
   const cursor = await dbCollection.find(query, options);
   return cursor.toArray();
 }
-
-// module.exports = { addScore, getHighScores, getUserScores, addQuizScores, updateQuizScore };

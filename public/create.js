@@ -1,3 +1,8 @@
+(async () => {
+  const user = localStorage.getItem('user');
+  if (!user) window.location.href = '/'
+})();
+
 const questionForm = document.getElementById('question-form');
 const questionList = document.getElementById('question-list');
 const quizId = uuidv4();

@@ -1,3 +1,8 @@
+(async () => {
+    const user = localStorage.getItem('user');
+    if (!user) window.location.href = '/'
+  })();
+
 (async function() {
 
 const questionList = document.getElementById('question-list');
