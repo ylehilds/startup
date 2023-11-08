@@ -1,5 +1,18 @@
+(async () => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      setDisplay('navControls', 'contents');
+    } else {
+      setDisplay('navControls', 'none');
+    }
+  })();
+
+
 function signOut(users) {
     localStorage.clear()
+    fetch(`/api/auth/logout`, {
+        method: 'delete',
+      }).then(() => (window.location.href = '/'));
   }
 
   function signOutRedirect() {
@@ -7,16 +20,16 @@ function signOut(users) {
     window.location = "index.html"
   }
 
-async function signUp(users) {
-    var username = document.getElementById("username").value
+async function signUp() {
+    var userId = document.getElementById("userId").value
     var password = document.getElementById("password").value
-    if (username && password) {
-        const user = await signUpUser(username, password)
+    if (userId && password) {
+        const user = await signUpUser(userId, password)
         if (user) {
             localStorage.setItem("user", JSON.stringify(user));  
             window.location = "dashboard.html";
         } else {
-            alert("User already exists, please create a different username!")
+            alert("User already exists, please create a different userId!")
             return
         }
   } else {
@@ -24,11 +37,11 @@ async function signUp(users) {
   }
 }
 
-async function signIn(username, password) {
-    var username = document.getElementById("username").value
+async function signIn() {
+    var userId = document.getElementById("userId").value
     var password = document.getElementById("password").value
-    if (username && password) {
-        const user = await signInUser(username, password)
+    if (userId && password) {
+        const user = await signInUser(userId, password)
         if (user) {
             localStorage.setItem("user", JSON.stringify(user));
             window.location = "dashboard.html";
@@ -41,13 +54,13 @@ async function signIn(username, password) {
   }
 }
 
-async function signUpUser(username, password) {
-    const response = await fetch('/api/signup', {
+async function signUpUser(userId, password) {
+    const response = await fetch('/api/auth/create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ userId, password }),
     });
     if (response.status === 200) {
         return response.json();
@@ -56,13 +69,13 @@ async function signUpUser(username, password) {
     }
 }
 
-async function signInUser(username, password) {
-    const response = await fetch('/api/signin', {
+async function signInUser(userId, password) {
+    const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ userId, password }),
     });
     if (response.status === 200) {
         return response.json();
@@ -93,3 +106,10 @@ document.querySelector('#password').addEventListener('keyup', function(event){
   })
 
 pageLoginState()
+
+function setDisplay(controlId, display) {
+    const playControlEl = document.querySelector(`#${controlId}`);
+    if (playControlEl) {
+      playControlEl.style.display = display;
+    }
+  }

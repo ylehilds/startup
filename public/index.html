@@ -18,6 +18,8 @@
       <nav class="navbar fixed-top">
         <a class="navbar-brand" href="index.html">Quiz Maker<sup>&reg;</sup></a>
 
+         <!-- Displayed when needing authentication -->
+         <div id="navControls">
         <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu class="navbar-nav">
           <li class="nav-item"><a class="nav-link active" href="dashboard.html">Home</a></li>
@@ -25,6 +27,7 @@
           <li class="nav-item"><a class="nav-link" href="scores.html">Scores</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
         </menu>
+         </div>
         
         <!-- <button class="btn btn-dark shadow" id="btnSwitch">Theme Toggle</button> -->
         <!-- Default switch -->
@@ -42,8 +45,8 @@
       <span id="userPasswordInputs" style="display: true;">
       <p>Login to play/create/edit a quiz</p>
       <!-- <form method="get" action="dashboard.html"> -->
-        <label for="username">Username</label>
-        <input class="form-control"type="text" id="username" placeholder="Your username here" />
+        <label for="userId">UserId</label>
+        <input class="form-control"type="text" id="userId" placeholder="Your userId here" />
         <br>
         <label for="password">Password</label>
         <input class="form-control" type="password" id="password" placeholder="Your password here" />

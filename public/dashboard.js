@@ -1,6 +1,6 @@
 function getUsername() {
     let user = getUser()
-    if (user) document.getElementById("username").textContent = user.userId
+    if (user) document.getElementById("userId").textContent = user.userId
 }
 
 function getUser() {
