@@ -1,3 +1,8 @@
+(async () => {
+  const user = localStorage.getItem('user');
+  if (!user) window.location.href = '/'
+})();
+
 function getUsername() {
     let user = getUser()
     if (user) document.getElementById("userId").textContent = user.userId

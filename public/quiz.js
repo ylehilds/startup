@@ -1,3 +1,8 @@
+(async () => {
+  const user = localStorage.getItem('user');
+  if (!user) window.location.href = '/'
+})();
+
 (async function() {
 const quizId = new URLSearchParams(window.location.search).get('quizId');
 let questions = [];

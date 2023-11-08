@@ -1,3 +1,8 @@
+(async () => {
+  const user = localStorage.getItem('user');
+  if (!user) window.location.href = '/'
+})();
+
 function displayPicture() {
   const random = Math.floor(Math.random() * 1000);
   fetch(`https://picsum.photos/v2/list?page=${random}&limit=1`)

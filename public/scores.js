@@ -1,3 +1,8 @@
+(async () => {
+  const user = localStorage.getItem('user');
+  if (!user) window.location.href = '/'
+})();
+
 async function getScores() {
     const data = []
     const scores = await fetchScores()

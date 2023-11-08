@@ -7,7 +7,6 @@
     }
   })();
 
-
 function signOut(users) {
     localStorage.clear()
     fetch(`/api/auth/logout`, {
