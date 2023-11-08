@@ -121,5 +121,14 @@ For this deliverable I stored the scores/users/quizzes in the database.
 - **Endpoints for data** - Endpoints now process the data and send it to Mongo.
 - **Stores data in MongoDB** - done!
 
+
+## Login deliverable
+For this deliverable I associate the votes with the logged in user.
+
+- **User registration** - Creates a new account in the database.
+- **existing user** - take/create Quizzes under the same user if the user already exists.
+- **Use MongoDB to store credentials** - Stores both user and quizzes created by user or community.
+- **Restricts functionality** - You cannot create/edit/take quizzes until you have signed in. This is enforced on both the frontend as well as the backend API.
+
 [Notes link](notes.md)
 
