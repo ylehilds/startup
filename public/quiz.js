@@ -239,7 +239,6 @@ function displayMsg(cls, from, msg) {
   chatText.innerHTML =
     `<li class="list-group-item"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
 }
-// `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
 
 function broadcastEvent(from, type, value) {
   const event = {
