@@ -130,5 +130,14 @@ For this deliverable I associate the votes with the logged in user.
 - **Use MongoDB to store credentials** - Stores both user and quizzes created by user or community.
 - **Restricts functionality** - You cannot create/edit/take quizzes until you have signed in. This is enforced on both the frontend as well as the backend API.
 
+## WebSocket deliverable
+
+For this deliverable I used webSocket to get updates from other users taking a quiz and submitting scores on the frontend in realtime.
+
+- **Backend listens for WebSocket connection** - done!
+- **Frontend makes WebSocket connection** - done!
+- **Data sent over WebSocket connection** - done!
+- **WebSocket data displayed** - All users taking a quiz or submitting a score after taking the quiz get messages about it on the screen in realtime.
+
 [Notes link](notes.md)
 
