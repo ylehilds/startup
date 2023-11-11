@@ -2,11 +2,11 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
-const login = require('./util/login.js');
 const create = require('./util/create.js');
 const dashboard = require('./util/dashboard.js');
 const edit = require('./util/edit.js');
 const DB = require('./util/database.js');
+const { peerProxy } = require('./peerProxy.js');
 
 const authCookieName = 'token';
 
@@ -197,6 +197,8 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`)
-})
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
+
+peerProxy(httpService);
