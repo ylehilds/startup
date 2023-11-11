@@ -70,12 +70,6 @@ async function fetchBroadcastQuote() {
   broadcastEvent(data)
 }
 
-// setInterval(async function timeout() {
-//   const data = await fetchQuote()
-//     // Let other players know the quiz has concluded
-//     broadcastEvent(data);
-// }, 10000);
-
 function displayMsg(data) {
   const chatText = document.querySelector('p.quote');
   chatText.textContent = data.content
