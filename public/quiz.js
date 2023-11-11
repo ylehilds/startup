@@ -1,9 +1,16 @@
+// Event messages
+const QuizEndEvent = 'quizEnd';
+const QuizStartEvent = 'quizStart';
+let socket
+const user = JSON.parse(localStorage.getItem('user'));
+
 (async () => {
   const user = localStorage.getItem('user');
   if (!user) window.location.href = '/'
 })();
 
 (async function() {
+configureWebSocket();
 const quizId = new URLSearchParams(window.location.search).get('quizId');
 let questions = [];
 
@@ -41,7 +48,6 @@ function revealResults() {
 
   results.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
   
-  const user = JSON.parse(localStorage.getItem('user'));
   const score = numCorrect;
   const scoreObject = {
     quizId,
@@ -50,6 +56,10 @@ function revealResults() {
   }
 
   submitScore(user.id, scoreObject);
+
+  // Let other players know the quiz has concluded
+  broadcastEvent(user.userId, QuizEndEvent, score);
+
   alert('Quiz submitted successfully!');
 }
 
@@ -75,13 +85,13 @@ async function submitScore(userId, score) {
   return scores // parses JSON response into native JavaScript objects 
 }
 
-// Method placeholder before we start using websockets
-setInterval(() => {
-  const score = Math.floor(Math.random() * 3000);
-  const chatText = document.querySelector('#players-actions ul');
-  chatText.innerHTML =
-    `<li class="list-group-item"><span class="player-event">Eich</span> scored ${score}</div>` + chatText.innerHTML;
-}, 5000);
+// // Method placeholder before we start using websockets
+// setInterval(() => {
+//   const score = Math.floor(Math.random() * 3000);
+//   const chatText = document.querySelector('#players-actions ul');
+//   chatText.innerHTML =
+//     `<li class="list-group-item"><span class="player-event">Eich</span> scored ${score}</div>` + chatText.innerHTML;
+// }, 5000);
 
 function displayPreviousSlide() {
   displaySlide(currentSlide - 1);
@@ -136,6 +146,9 @@ function createQuiz() {
   );
 
   quizContainer.innerHTML = output.join('');
+
+  // Let other players know a new quiz has started
+  broadcastEvent(user.userId, QuizStartEvent, {});
 }
 
 function displayNextSlide() {
@@ -199,4 +212,48 @@ async function getQuizQuestions(quizId) {
 async function init(quizId) {
   return await getQuizQuestions(quizId)
 }
+
+// Functionality for peer communication using WebSocket
+
+function configureWebSocket() {
+  const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+  socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+  socket.onopen = (event) => {
+    displayMsg('system', 'quiz', 'connected');
+  };
+  socket.onclose = (event) => {
+    displayMsg('system', 'quiz', 'disconnected');
+  };
+  socket.onmessage = async (event) => {
+    const msg = JSON.parse(await event.data.text());
+    if (msg.type === QuizEndEvent) {
+      displayMsg('player', msg.from, `scored ${msg.value}`);
+    } else if (msg.type === QuizStartEvent) {
+      displayMsg('player', msg.from, `started a new quiz`);
+    }
+  };
+}
+
+function displayMsg(cls, from, msg) {
+  const chatText = document.querySelector('#players-actions ul');
+  chatText.innerHTML =
+    `<li class="list-group-item"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+}
+
+function broadcastEvent(from, type, value) {
+  const event = {
+    from: from,
+    type: type,
+    value: value,
+  };
+  
+  if (socket.readyState === WebSocket.OPEN) {
+    socket.send(JSON.stringify(event));
+  } else {
+    socket.addEventListener('open', () => {
+      socket.send(JSON.stringify(event));
+    });
+  }
+}
+
 })();
