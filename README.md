@@ -137,7 +137,7 @@ For this deliverable I used webSocket to get updates from other users taking a q
 - **Backend listens for WebSocket connection** - done!
 - **Frontend makes WebSocket connection** - done!
 - **Data sent over WebSocket connection** - done!
-- **WebSocket data displayed** - All users taking a quiz or submitting a score after taking the quiz get messages about it on the screen in realtime.
+- **WebSocket data displayed** - All users taking a quiz or submitting a score after taking the quiz get messages about it on the screen in realtime. Also on connected/disconnected to websockets emit events that ends up on screen accordingly.
 
 [Notes link](notes.md)
 
