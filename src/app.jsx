@@ -20,7 +20,7 @@ export default function App() {
                 <nav className="navbar fixed-top">
                     <a className="navbar-brand" href="index.html">Quiz Maker<sup>&reg;</sup></a>
 
-                    <div id="navControls">
+                    <div id="navControls" className="nav-controls">
                         <menu className="navbar-nav">
                             <li className="nav-item"><a className="nav-link active" href="dashboard.html">Home</a></li>
                             <li className="nav-item"><a className="nav-link" href="scores.html">Scores</a></li>
