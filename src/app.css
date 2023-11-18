@@ -1,4 +1,4 @@
-body {
+.app {
   display: flex;
   flex-direction: column;
   min-width: 375px;
@@ -52,4 +52,27 @@ footer a {
   main {
     flex: 1 100vh;
   }
+}
+
+.dark, .dark header, .dark footer {
+  background-color: rgb(38, 37, 37);
+  color: white;
+}
+
+.light {
+  background-color: white;
+  color: black;
+}
+
+.light header, .light footer {
+  background-color: white;
+  color: white;
+}
+
+.theme-toggle {
+  float: right;
+}
+
+#navControls {
+  float: left;
 }

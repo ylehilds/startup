@@ -1,74 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <!-- Tell browsers not to scale the viewport automatically -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Maker</title>
-    <link rel="icon" href="favicon.ico">
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
 
-    <link rel="stylesheet" href="main.css" />
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Simon React</title>
   </head>
   <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
-    <header class="container-fluid">
-      <!-- Navigation elements -->
-      <nav class="navbar fixed-top">
-        <a class="navbar-brand" href="index.html">Quiz Maker<sup>&reg;</sup></a>
-
-         <!-- Displayed when needing authentication -->
-         <div id="navControls">
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
-        <menu class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="dashboard.html">Home</a></li>
-          <!-- <li class="nav-item"><a class="nav-link" href="create.html">Quiz</a></li> -->
-          <li class="nav-item"><a class="nav-link" href="scores.html">Scores</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-        </menu>
-         </div>
-        
-        <!-- <button class="btn btn-dark shadow" id="btnSwitch">Theme Toggle</button> -->
-        <!-- Default switch -->
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-        </div>
-
-      </nav>
-    </header>
-
-    <main class="container-fluid text-center">
-      <div>
-      <h1>Welcome</h1>
-      <span id="userPasswordInputs" style="display: true;">
-      <p>Login to play/create/edit a quiz</p>
-      <!-- <form method="get" action="dashboard.html"> -->
-        <label for="userId">UserId</label>
-        <input class="form-control" type="text" id="userId" placeholder="Your userId here" />
-        <br>
-        <label for="password">Password</label>
-        <input class="form-control" type="password" id="password" placeholder="Your password here" />
-      </span>
-        <br>
-        <br>
-        <button id="signIn" type="submit" onclick="signIn()" class="btn btn-primary text-reset">Sign In</button>
-        <button id="signOut" style="display: none;" type="button" onclick="signOutRedirect()" class="btn btn-primary text-reset">Sign Out</button>
-        <button id="signUp" type="button" onclick="signUp()" class="btn btn-primary text-reset">Sign Up</button>
-        <button id="goToDashboard" style="display: none;" type="button" onclick="goToDashboard()" class="btn btn-primary text-reset">Dashboard</button>
-      <!-- </form> -->
-      </div>
-    </main>
-
-    <footer>
-      <div class="container-fluid">
-      <span class="text-reset">Lehi Alcantara</span>
-      <a class="text-reset" href="https://github.com/ylehilds/startup">GitHub</a>
-      </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="./theme.js" crossorigin="anonymous"></script>
-    <script src="login.js"></script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.jsx"></script>
   </body>
 </html>
