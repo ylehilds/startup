@@ -26,15 +26,14 @@ export default function App() {
                     <nav className="navbar fixed-top">
                         <NavLink className="navbar-brand" to="">Quiz Maker<sup>&reg;</sup></NavLink>
 
-                        <div id="navControls" className="nav-controls">
+                        <div id="navControls">
                             <menu className="navbar-nav">
                                 <li className="nav-item"><NavLink className="nav-link active" to="dashboard">Home</NavLink></li>
                                 <li className="nav-item"><NavLink className="nav-link" to="scores">Scores</NavLink></li>
                                 <li className="nav-item"><NavLink className="nav-link" to="about">About</NavLink></li>
                             </menu>
                         </div>
-
-                        <div className="form-check form-switch">
+                        <div className="form-check form-switch ms-auto">
                             <input
                                 className="form-check-input"
                                 type="checkbox"
@@ -44,7 +43,6 @@ export default function App() {
                             />
                             <label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label>
                         </div>
-
                     </nav>
                 </header>
 
