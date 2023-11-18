@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './login/login';
+import { Dashboard } from './dashboard/dashboard';
+import { Scores } from './scores/scores';
+import { About } from './about/about';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
@@ -15,44 +20,57 @@ export default function App() {
     };
 
     return (
-        <div className="app" data-bs-theme={theme}>
-            <header className={`container-fluid ${theme}`}>
-                <nav className="navbar fixed-top">
-                    <a className="navbar-brand" href="index.html">Quiz Maker<sup>&reg;</sup></a>
+        <BrowserRouter>
+            <div className="app" data-bs-theme={theme}>
+                <header className={`container-fluid ${theme}`}>
+                    <nav className="navbar fixed-top">
+                        <NavLink className="navbar-brand" to="">Quiz Maker<sup>&reg;</sup></NavLink>
 
-                    <div id="navControls" className="nav-controls">
-                        <menu className="navbar-nav">
-                            <li className="nav-item"><a className="nav-link active" href="dashboard.html">Home</a></li>
-                            <li className="nav-item"><a className="nav-link" href="scores.html">Scores</a></li>
-                            <li className="nav-item"><a className="nav-link" href="about.html">About</a></li>
-                        </menu>
+                        <div id="navControls" className="nav-controls">
+                            <menu className="navbar-nav">
+                                <li className="nav-item"><NavLink className="nav-link active" to="dashboard">Home</NavLink></li>
+                                <li className="nav-item"><NavLink className="nav-link" to="scores">Scores</NavLink></li>
+                                <li className="nav-item"><NavLink className="nav-link" to="about">About</NavLink></li>
+                            </menu>
+                        </div>
+
+                        <div className="form-check form-switch">
+                            <input
+                                className="form-check-input"
+                                type="checkbox"
+                                role="switch"
+                                id="flexSwitchCheckDefault"
+                                onChange={handleThemeToggle}
+                            />
+                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label>
+                        </div>
+
+                    </nav>
+                </header>
+
+                <main className={`container-fluid text-center ${theme}`}>
+                <Routes>
+                    <Route path='/' element={<Login />} />
+                    <Route path='/dashboard' element={<Dashboard />} />
+                    <Route path='/scores' element={<Scores />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+                </main>
+
+
+
+                <footer className={`container-fluid ${theme}`}>
+                    <div>
+                        <span className="text-reset">Lehi Alcantara</span>
+                        <NavLink className="text-reset" to="https://github.com/ylehilds/startup">GitHub</NavLink>
                     </div>
-
-                    <div className="form-check form-switch">
-                <input 
-                    className="form-check-input" 
-                    type="checkbox" 
-                    role="switch" 
-                    id="flexSwitchCheckDefault" 
-                    onChange={handleThemeToggle} 
-                />
-                <label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label>
+                </footer>
             </div>
-
-                </nav>
-            </header>
-
-            <main className={`container-fluid text-center ${theme}`}>
-                Components go here
-            </main>
-
-            <footer className={`container-fluid ${theme}`}>
-                <div>
-                    <span className="text-reset">Lehi Alcantara</span>
-                    <a className="text-reset" href="https://github.com/ylehilds/startup">GitHub</a>
-                </div>
-            </footer>
-        </div>
+        </BrowserRouter>
     )
 }
 
+function NotFound() {
+    return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
+}
