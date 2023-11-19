@@ -4,6 +4,9 @@ import { Login } from './login/login';
 import { Dashboard } from './dashboard/dashboard';
 import { Scores } from './scores/scores';
 import { About } from './about/about';
+import { Quiz } from './quiz/quiz';
+import { Edit } from './edit/edit';
+import { Create } from './create/create';
 import { AuthState } from './login/authState';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -73,6 +76,9 @@ export default function App() {
                         <Route path='/dashboard' element={<Dashboard />} />
                         <Route path='/scores' element={<Scores />} />
                         <Route path='/about' element={<About />} />
+                        <Route path='/quiz' element={<Quiz />} />
+                        <Route path='/edit' element={<Edit />} />
+                        <Route path='/create' element={<Create />} />
                         <Route path='*' element={<NotFound />} />
                     </Routes>
                 </main>
