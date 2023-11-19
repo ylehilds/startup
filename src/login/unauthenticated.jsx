@@ -31,7 +31,7 @@ export function Unauthenticated(props) {
     });
     if (response?.status === 200) {
       const user = await response.json();
-      // localStorage.setItem('userName', userName);
+      localStorage.setItem('userName', userName);
       localStorage.setItem('user', JSON.stringify(user));
       props.onLogin(userName);
     } else {
