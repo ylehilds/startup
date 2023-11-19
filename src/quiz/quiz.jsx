@@ -156,10 +156,6 @@ export function Quiz() {
     return scores // parses JSON response into native JavaScript objects 
   }
 
-  function displayPreviousSlide() {
-    displaySlide(currentSlide - 1);
-  }
-
   function displaySlide(n) {
     setCurrentSlide(n);
   }
