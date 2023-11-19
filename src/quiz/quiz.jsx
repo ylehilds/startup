@@ -43,7 +43,6 @@ export function Quiz() {
       const res = await response.json()
       setQuestions(res[0].questions);
       const myQuestions = adjustFormatQuestions(res)
-      setAdjustedQuestions(myQuestions)
       createQuiz(myQuestions);
       displaySlide(currentSlide);
     }
@@ -129,7 +128,7 @@ export function Quiz() {
     submitScore(user.id, scoreObject);
 
     // Let other players know the quiz has concluded
-    broadcastEvent(user.userId, QuizEndEvent, score);
+    broadcastEvent(user.userId, QuizEndEvent, numCorrect);
 
     alert('Quiz submitted successfully!');
     setIsSubmitted(true); // <-- Add this line
@@ -193,7 +192,7 @@ export function Quiz() {
       }
     );
 
-    if (quizContainer) quizContainer.innerHTML = output.join('');
+    // if (quizContainer) quizContainer.innerHTML = output.join('');
 
     // Let other players know a new quiz has started
     broadcastEvent(user.userId, QuizStartEvent, {});
