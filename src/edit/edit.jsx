@@ -44,6 +44,21 @@ export function Edit() {
     setQuestions(newQuestions);
   };
 
+  const saveQuizToDB = async function() {
+    const res = await fetch(`/api/quizzes/${quizId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ questions }),
+    });
+    if (res.status === 200) {
+      console.log('save successful');
+    } else {
+      alert('Error saving quiz.');
+    }
+  }
+
   const handleDeleteQuestion = (index) => {
     const newQuestions = [...questions];
     newQuestions.splice(index, 1);
@@ -62,6 +77,8 @@ export function Edit() {
         />
       ))}
       <button onClick={handleAddQuestion}>Add Question</button>
+            {/* // save buton to save entire quiz */}
+            <button onClick={saveQuizToDB}>Save Quiz</button>
     </div>
   );
 }
