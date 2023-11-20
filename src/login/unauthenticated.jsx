@@ -65,10 +65,10 @@ export function Unauthenticated(props) {
             }}
           />
         </div>
-        <Button variant='primary' onClick={() => loginUser()}>
+        <Button variant='primary text-reset' onClick={() => loginUser()}>
           Login
-        </Button>
-        <Button variant='secondary' onClick={() => createUser()}>
+        </Button>&nbsp;&nbsp;
+        <Button variant='primary text-reset' onClick={() => createUser()}>
           Create
         </Button>
       </div>
