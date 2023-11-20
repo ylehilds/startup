@@ -55,6 +55,7 @@ export function Edit() {
     });
     if (res.status === 200) {
       console.log('save successful');
+      alert('save successful');
     } else {
       alert('Error saving quiz.');
     }
