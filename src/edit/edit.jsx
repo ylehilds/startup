@@ -45,7 +45,7 @@ export function Edit() {
     setQuestions(newQuestions);
   };
 
-  const saveQuizToDB = async function() {
+  const saveQuizToDB = async function () {
     const res = await fetch(`/api/quizzes/${quizId}`, {
       method: 'PUT',
       headers: {
@@ -69,7 +69,8 @@ export function Edit() {
 
   return (
     <div>
-      <input id="editQuizTitle" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <input id="editQuizTitle" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Quiz Title" />
+      <br />
       {questions.map((question, index) => (
         <QuestionEditor
           key={index}
@@ -78,9 +79,10 @@ export function Edit() {
           onDelete={() => handleDeleteQuestion(index)}
         />
       ))}
-      <button onClick={handleAddQuestion}>Add Question</button>
-            {/* // save buton to save entire quiz */}
-            <button onClick={saveQuizToDB}>Save Quiz</button>
+      <br />
+      <button className="add text-reset" onClick={handleAddQuestion}>Add Question</button>&nbsp;&nbsp;&nbsp;
+      {/* // save buton to save entire quiz */}
+      <button className="save text-reset" onClick={saveQuizToDB}>Save Quiz</button>
     </div>
   );
 }
@@ -108,7 +110,7 @@ function QuestionEditor({ question, onSave, onDelete }) {
       {isEditing ? (
         <div>
           {/* Edit form */}
-          <input value={newQuestion.question} onChange={(e) => setNewQuestion({ ...newQuestion, question: e.target.value })} />
+          <input value={newQuestion.question} onChange={(e) => setNewQuestion({ ...newQuestion, question: e.target.value })} placeholder="Question" />
           {newQuestion.options.map((option, index) => (
             <input
               key={index}
@@ -118,25 +120,32 @@ function QuestionEditor({ question, onSave, onDelete }) {
                 newOptions[index] = e.target.value;
                 setNewQuestion({ ...newQuestion, options: newOptions });
               }}
+              placeholder={`Option ${index + 1}`}
             />
           ))}
+          <br />
           <select value={newQuestion.answerIndex} onChange={(e) => setNewQuestion({ ...newQuestion, answerIndex: parseInt(e.target.value) })}>
             <option value="0">Option 1</option>
             <option value="1">Option 2</option>
             <option value="2">Option 3</option>
             <option value="3">Option 4</option>
           </select>
-          <button onClick={handleSave}>Save</button>
-          <button onClick={handleCancel}>Cancel</button>
+          <br />
+          <button className="save text-reset" onClick={handleSave}>Save</button>&nbsp;&nbsp;&nbsp;
+          <button className="cancel text-reset" onClick={handleCancel}>Cancel</button>
         </div>
       ) : (
         <div>
           {/* Display */}
+          <br />
           <div>{question.question}</div>
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-          <button onClick={onDelete}>Delete</button>
+          <br />
+          <button className="edit text-reset" onClick={() => setIsEditing(true)}>Edit</button>&nbsp;&nbsp;&nbsp;
+          <button className="delete text-reset" onClick={onDelete}>Delete</button>
+          <br />
         </div>
       )}
     </div>
   );
 }
+

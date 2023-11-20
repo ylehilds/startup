@@ -115,8 +115,8 @@ export function Create() {
               </select>
               <br />
               <div className="d-flex justify-content-between">
-                <button type="submit" className="btn btn-primary">Add Question</button>
-                <button type="button" id="clear-button" className="btn btn-warning" onClick={handleClearButtonClick}>Clear</button>
+                <button type="submit" className="btn btn-primary text-reset">Add Question</button>
+                <button type="button" id="clear-button" className="btn btn-warning text-reset" onClick={handleClearButtonClick}>Clear</button>
                 <br /><br />
               </div>
             </form>

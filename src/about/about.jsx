@@ -116,7 +116,7 @@ function broadcastEvent(data) {
         </div>
 
       <br />
-      <button className="btn btn-primary" onClick={fetchBroadcastQuote}>Get new quote</button>
+      <button className="btn btn-primary text-reset" onClick={fetchBroadcastQuote}>Get new quote</button>
     </main>
   )
 }

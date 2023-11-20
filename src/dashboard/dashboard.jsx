@@ -49,15 +49,17 @@ export function Dashboard() {
       <br />
       <button className="btn btn-primary text-reset" onClick={() => window.location.href = `/create`}>Create Quiz</button>
       <br />
+      <br />
+      <br />
 
       <h2>{user && user.userId + '\'s Quizzes: '}</h2>
       {quizzes.filter(quiz => user.id === quiz.creatorId).map((quiz) => (
         <div key={quiz.quizId} className="quiz-item card mb-3">
           <h2 className="card-header">{quiz.title}</h2>
           <div className="card-body d-flex">
-            {user.id === quiz.creatorId && <button className="btn btn-primary me-2" onClick={() => window.location.href = `/edit?quizId=${quiz.quizId}`}>Edit</button>}
-            <button className="btn btn-success me-4" onClick={() => window.location.href = `/quiz?quizId=${quiz.quizId}`}>Take</button>
-            {user.id === quiz.creatorId && <button className="btn btn-danger" onClick={() => deleteQuiz(quiz.quizId)}>Delete</button>}
+            {user.id === quiz.creatorId && <button className="btn btn-primary me-2 text-reset" onClick={() => window.location.href = `/edit?quizId=${quiz.quizId}`}>Edit</button>}
+            <button className="btn btn-success me-4 text-reset" onClick={() => window.location.href = `/quiz?quizId=${quiz.quizId}`}>Take</button>
+            {user.id === quiz.creatorId && <button className="btn btn-danger text-reset" onClick={() => deleteQuiz(quiz.quizId)}>Delete</button>}
           </div>
         </div>
       ))}
@@ -68,9 +70,9 @@ export function Dashboard() {
         <div key={quiz.quizId} className="quiz-item card mb-3">
           <h2 className="card-header">{quiz.title}</h2>
           <div className="card-body d-flex">
-            {user.id === quiz.creatorId && <button className="btn btn-primary me-2" onClick={() => window.location.href = `/edit?quizId=${quiz.quizId}`}>Edit</button>}
-            <button className="btn btn-success me-4" onClick={() => window.location.href = `/quiz?quizId=${quiz.quizId}`}>Take</button>
-            {user.id === quiz.creatorId && <button className="btn btn-danger" onClick={() => deleteQuiz(quiz.quizId)}>Delete</button>}
+            {user.id === quiz.creatorId && <button className="btn btn-primary me-2 text-reset" onClick={() => window.location.href = `/edit?quizId=${quiz.quizId}`}>Edit</button>}
+            <button className="btn btn-success me-4 text-reset" onClick={() => window.location.href = `/quiz?quizId=${quiz.quizId}`}>Take</button>
+            {user.id === quiz.creatorId && <button className="btn btn-danger text-reset" onClick={() => deleteQuiz(quiz.quizId)}>Delete</button>}
           </div>
         </div>
       ))}
