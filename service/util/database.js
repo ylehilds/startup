@@ -115,6 +115,7 @@ exports.editQuestion = async function (data, quizId) {
   const updateDoc = {
     $set: {
       questions: data.questions,
+      title: data.title,
     },
   };
   const result = await dbCollection.updateOne(filter, updateDoc);

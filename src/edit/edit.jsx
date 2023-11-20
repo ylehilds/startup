@@ -26,6 +26,7 @@ export function Edit() {
     if (response.status === 200) {
       const res = await response.json()
       setQuestions(res[0].questions);
+      setTitle(res[0].title);
     }
   }
 
@@ -50,7 +51,7 @@ export function Edit() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ questions }),
+      body: JSON.stringify({ questions, title }),
     });
     if (res.status === 200) {
       console.log('save successful');
