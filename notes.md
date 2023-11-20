@@ -1790,6 +1790,231 @@ function broadcastEvent(from, type, value) {
 
 ```
 
+
+## Startup React
+* Create view components
+
+We now create React component files login.jsx, play.jsx, scores.jsx, and about.jsx to represent each of the application views. To begin with, these are just stubs that we will populate as we move functionality from the old js files into the jsx components. We place each of the stubbed components in a separate directory (e.g. src/login/login.jsx) so that we can keep all of the component files together.
+
+Here is the login.jsx stub before any code is converted over. The other components are similar.
+
+```javascript
+import React from 'react';
+
+export function Login() {
+  return (
+    <main className='container-fluid bg-secondary text-center'>
+      <div>login displayed here</div>
+    </main>
+  );
+}
+```
+Create the router
+
+With app.jsx containing the header and footer, and all the application view component stubs created, we can now create the router that will display each component as the navigation UI requests it. The router controls the whole application by determining what component to display based upon what navigation the user chooses. To implement the router, we import the router component into the App component, and wrap all of the App component's elements with the BrowserRouter component. We also import all of our view components.
+
+```javascript
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './login/login';
+import { Play } from './play/play';
+import { Scores } from './scores/scores';
+import { About } from './about/about';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
+    <div className='body bg-dark text-light'><!-- sub-elements here --></div>
+  </BrowserRouter>
+);
+```
+Navigating routes
+
+We then we replace the a elements with the router's NavLink component. The anchor element's href attribute is replaced with the router's to attribute. The NavLink component prevents the browser's default navigation functionality and instead handles it by replacing the currently displayed component.
+
+```javascript
+<a className="nav-link" href="play.html">Play</a>
+
+// to
+
+<NavLink className='nav-link' to='play'>Play</NavLink>
+The nav element's code now looks like the following.
+
+<nav className='navbar fixed-top navbar-dark'>
+  <div className='navbar-brand'>
+    Simon<sup>&reg;</sup>
+  </div>
+  <menu className='navbar-nav'>
+    <li className='nav-item'>
+      <NavLink className='nav-link' to=''>
+        Login
+      </NavLink>
+    </li>
+    <li className='nav-item'>
+      <NavLink className='nav-link' to='play'>
+        Play
+      </NavLink>
+    </li>
+    <li className='nav-item'>
+      <NavLink className='nav-link' to='scores'>
+        Scores
+      </NavLink>
+    </li>
+    <li className='nav-item'>
+      <NavLink className='nav-link' to='about'>
+        About
+      </NavLink>
+    </li>
+  </menu>
+</nav>
+```
+Injecting the routed component
+
+The router definitions are then inserted so that the router knows what component to display for a given path. The router changes the rendered component; it appears in the place of the Routes element. The Routes element replaces the main element in the component HTML.
+
+```javascript
+ <main>App components go here</main>
+
+ // to
+
+<Routes>
+  <Route path='/' element={<Login />} exact />
+  <Route path='/play' element={<Play />} />
+  <Route path='/scores' element={<Scores />} />
+  <Route path='/about' element={<About />} />
+  <Route path='*' element={<NotFound />} />
+</Routes>
+```
+
+Notice that the * (default matcher) was added to handle the case where an unknown path is requested. We handle this by creating a component for a path that is not found. We place this component at the bottom of our src/app.jsx file.
+
+function NotFound() {
+  return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
+}
+At this point the application should support navigating to the different components. When you reach this point with your startup, make sure that you commit your changes.
+
+
+* Scores conversion from scratch to React
+
+Converting to React components
+
+The code for each of the HTML pages needs to now be converted to the different React components. Each of the components is a bit different, and so you want to review them to determine what they look like as a React component.
+
+The basic steps for converting the component include the following.
+
+Copy the main element HTML over and put it in the return value of the component. Don't copy the header and footer HTML since they are now represented in app.jsx.
+Rename the class to className so that it doesn't conflict with the JavaScript keyword class.
+Copy the JavaScript over and turn the functions into inner functions of the React component.
+Move the CSS over to the component directory and use an import statement to bring it into the component's jsx file.
+Create React state variables for each of the stateful objects in the component.
+Replace DOM query selectors with React state variables.
+Move state up to parent components as necessary. For example, authentication state, or user name state.
+Create child components as necessary. For example, a SimonGame and SimonButton component.
+In order for you to have a feel for how this is done we will demonstrate how this is done with the Scores component.
+
+Convert Scores component
+
+js:
+```javascript
+import React from 'react';
+import './scores.css';
+
+export function Scores() {
+  const [scores, setScores] = React.useState([]);
+
+  function addScores(scores) {
+    let totalScore = 0;
+    scores.forEach(score => {
+      totalScore += score.score;
+    })
+    return totalScore;
+  }
+
+  // Demonstrates calling a service asynchronously so that
+  // React can properly update state objects with the results.
+  React.useEffect(() => {
+    fetch('/api/scores')
+      .then((response) => response.json())
+      .then((scores) => {
+
+        const data = []
+        for (const [key, value] of Object.entries(scores)) {
+          console.log(`${key}: ${value}`);
+          data.push({
+            username: value.username,
+            scores: addScores(value.scores),
+            date: value.lastUpdated ?? ''
+          })
+        }
+
+        setScores(data);
+        localStorage.setItem('scores', JSON.stringify(data));
+      })
+      .catch(() => {
+        const scoresText = localStorage.getItem('scores');
+        if (scoresText) {
+          setScores(JSON.parse(scoresText));
+        }
+      });
+  }, []);
+
+  // sort scores
+  scores.sort((a, b) => b.scores - a.scores);
+
+  // Demonstrates rendering an array with React
+  const scoreRows = [];
+  if (scores.length) {
+    for (const [i, score] of scores.entries()) {
+      scoreRows.push(
+        <tr key={i}>
+          <td>{i + 1}</td>
+          <td>{score.username}</td>
+          <td>{score.scores}</td>
+          <td>{score.date}</td>
+        </tr>
+      );
+    }
+  } else {
+    scoreRows.push(
+      <tr key='0'>
+        <td colSpan='4'>Be the first to score</td>
+      </tr>
+    );
+  }
+
+  return (
+    <main className="container-fluid text-center">
+      <table className="table table-striped table-bordered table-hover">
+        <caption>List of scores</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Score</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        {/* <tbody id="tableBody"></tbody> */}
+        <tbody id='scores'>{scoreRows}</tbody>
+      </table>
+    </main>
+  );
+}
+```
+css:
+```css
+td {
+  max-width: 40vw;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+main {
+  align-items: center; 
+  justify-content: space-around;
+}
+```
+
 -----------------------------------------------------------------------------
 // MD helper
 

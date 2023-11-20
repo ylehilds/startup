@@ -139,5 +139,14 @@ For this deliverable I used webSocket to get updates from other users taking a q
 - **Data sent over WebSocket connection** - done!
 - **WebSocket data displayed** - All users taking a quiz or submitting a score after taking the quiz get messages about it on the screen in realtime. Also on connected/disconnected to websockets emit events that ends up on screen accordingly. I have also added a button on about page after initial quote load on each browser you can then click on button "Get new Quote" and the new quote will synchronize amongst the browsers using websocket.
 
+## React deliverable
+
+For this deliverable I converted the application over to use React.
+
+- **Bundled and transpiled** - done!
+- **Components** - Login, About, Create, Dashboard, Edit, Quiz, Scores are all components.
+- **Router** - Routing between Login, About, Create, Dashboard, Edit, Quiz and Scores components, additional routing for a not found routing is also deployed.
+- **Hooks** - Used UseState to track changes in quiz app state in all components.
+
 [Notes link](notes.md)
 

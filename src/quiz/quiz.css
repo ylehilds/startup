@@ -45,14 +45,23 @@ h1{
 
 .answers {
   margin-bottom: 20px;
-  text-align: left;
+  text-align: right;
   display: inline-block;
+  color: #fff;
 }
 
-.answers label{
-  display: block;
-  margin-bottom: 10px;
-}
+.answers label {
+    display: flex;
+    align-items: start;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+
+  input[type="radio"] {
+    width: 30px;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
 
 button{
   font-family: 'Work Sans', sans-serif;
@@ -89,7 +98,7 @@ button:hover{
   position: relative;
   height: 200px;
   margin-top: 40px;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
 }
 
 #quizNavigation {
@@ -100,4 +109,12 @@ button:hover{
 #results {
   position: relative;
   padding-top: 15px;
+}
+
+.answers.correct {
+  color: #0d0;
+}
+
+.answers.incorrect {
+    color: #d00;
 }

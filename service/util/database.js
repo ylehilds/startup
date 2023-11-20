@@ -100,7 +100,10 @@ exports.addQuestion = async function (data) {
   const updateDoc = {
     $push: {
       questions: data.question,
-    }
+    },
+    $set: {
+      title: data.quizTitle,
+    },
   };
   const result = await dbCollection.updateOne(filter, updateDoc, options);
   return result;
@@ -112,6 +115,7 @@ exports.editQuestion = async function (data, quizId) {
   const updateDoc = {
     $set: {
       questions: data.questions,
+      title: data.title,
     },
   };
   const result = await dbCollection.updateOne(filter, updateDoc);
