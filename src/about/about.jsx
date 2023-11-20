@@ -21,6 +21,7 @@ function configureWebSocket() {
   socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
   socket.onmessage = async (event) => {
     const data = JSON.parse(await event.data.text());
+    if (data.type !== 'quote') return
     displayMsg(data);
   };
 }
@@ -39,6 +40,8 @@ function displayMsg(data) {
 }
 
 function broadcastEvent(data) {
+  // add metadata to the data object
+  data.type = 'quote';
   if (socket.readyState === WebSocket.OPEN) {
     socket.send(JSON.stringify(data));
   } else {
