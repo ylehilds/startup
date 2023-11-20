@@ -42,14 +42,12 @@ export function Dashboard() {
 
   return (
     <div className="main-dashboard container-fluid">
-    <div className="players">
-      Welcome <span id="userId" className="player-name">{user.userId.charAt(0).toUpperCase() + user.userId.slice(1)}</span>
-      {/* <span id="userId" class="player-name"></span> */}
-    </div>
-    <br />
-      <form method="get" action="create.html">
-        <button className="btn btn-primary text-reset">Create Quiz</button>
-      </form>
+      <div className="players">
+        Welcome <span id="userId" className="player-name">{user.userId.charAt(0).toUpperCase() + user.userId.slice(1)}</span>
+        {/* <span id="userId" class="player-name"></span> */}
+      </div>
+      <br />
+      <button className="btn btn-primary text-reset" onClick={() => window.location.href = `/create`}>Create Quiz</button>
       <br />
 
       <h2>{user && user.userId + '\'s Quizzes: '}</h2>
