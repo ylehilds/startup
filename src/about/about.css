@@ -1,11 +1,9 @@
 .picture-box {
-  height: calc(100px + 7.3em);
+  height: calc(100px + 0.5em);
   margin-bottom: 1em;
   padding: 0.5em;
   background: rgb(86, 89, 93);
   border-radius: 5px;
-  width: 70%;
-  height: 20%;
 }
 
 .quote-box {
@@ -36,7 +34,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 200px;
+  height: 160px;
   width: 200px;
 }
 
@@ -44,7 +42,6 @@
   background: none;
   justify-content: center;
   align-items: center;
-  margin: 19px;
 }
 
 .main-about {
