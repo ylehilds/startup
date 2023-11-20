@@ -91,10 +91,10 @@ function broadcastEvent(data) {
   }
 
   return (
-    <main className="main-about container-fluid">
+    <div className="main-about container-fluid">
       <div id="picture2" className="picture-box"><img src="./images/quizMakerLogo.png" alt="pic2" /></div>
       {/* <div id="picture" class="picture-box"></div> */}
-      <br />
+      <br /><br /><br />
       <div id='picture' className='picture-box'>
           {imgEl}
         </div>
@@ -117,6 +117,6 @@ function broadcastEvent(data) {
 
       <br />
       <button className="btn btn-primary text-reset" onClick={fetchBroadcastQuote}>Get new quote</button>
-    </main>
+    </div>
   )
 }
