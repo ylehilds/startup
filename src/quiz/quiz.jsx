@@ -248,6 +248,7 @@ export function Quiz() {
           {score} out of {questions.length}
         </div>
       )}
+      <br />
       <div id="quizNavigation">
         {currentSlide > 0 && <button className="btn btn-primary text-reset" onClick={() => setCurrentSlide(currentSlide - 1)}>Previous</button>}&nbsp;
         {currentSlide < questions.length - 1 && <button  className="btn btn-primary text-reset" onClick={() => setCurrentSlide(currentSlide + 1)}>Next</button>}
