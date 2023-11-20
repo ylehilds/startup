@@ -80,9 +80,9 @@ export function Edit() {
         />
       ))}
       <br />
-      <button className="add text-reset" onClick={handleAddQuestion}>Add Question</button>&nbsp;&nbsp;&nbsp;
+      <button className="btn btn-secondary add text-reset" onClick={handleAddQuestion}>Add Question</button>&nbsp;&nbsp;&nbsp;
       {/* // save buton to save entire quiz */}
-      <button className="save text-reset" onClick={saveQuizToDB}>Save Quiz</button>
+      <button className="btn btn-secondary save text-reset" onClick={saveQuizToDB}>Save Quiz</button>
     </div>
   );
 }
@@ -131,8 +131,8 @@ function QuestionEditor({ question, onSave, onDelete }) {
             <option value="3">Option 4</option>
           </select>
           <br />
-          <button className="save text-reset" onClick={handleSave}>Save</button>&nbsp;&nbsp;&nbsp;
-          <button className="cancel text-reset" onClick={handleCancel}>Cancel</button>
+          <button className="btn btn-secondary save text-reset" onClick={handleSave}>Save</button>&nbsp;&nbsp;&nbsp;
+          <button className="btn btn-secondary cancel text-reset" onClick={handleCancel}>Cancel</button>
         </div>
       ) : (
         <div>
@@ -140,8 +140,8 @@ function QuestionEditor({ question, onSave, onDelete }) {
           <br />
           <div>{question.question}</div>
           <br />
-          <button className="edit text-reset" onClick={() => setIsEditing(true)}>Edit</button>&nbsp;&nbsp;&nbsp;
-          <button className="delete text-reset" onClick={onDelete}>Delete</button>
+          <button className="btn btn-secondary edit text-reset" onClick={() => setIsEditing(true)}>Edit</button>&nbsp;&nbsp;&nbsp;
+          <button className="btn btn-secondary delete text-reset" onClick={onDelete}>Delete</button>
           <br />
         </div>
       )}

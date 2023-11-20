@@ -63,9 +63,9 @@ body {
   }
   
   button.save {
-    background-color: #90EE90; /* Light Green */
+    background-color: orange;
   }
   
   button.cancel {
-    background-color: #800080; /* Purple */
+    background-color: #800080;
   }
