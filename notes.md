@@ -1798,6 +1798,7 @@ We now create React component files login.jsx, play.jsx, scores.jsx, and about.j
 
 Here is the login.jsx stub before any code is converted over. The other components are similar.
 
+```javascript
 import React from 'react';
 
 export function Login() {
@@ -1807,11 +1808,12 @@ export function Login() {
     </main>
   );
 }
-
+```
 Create the router
 
 With app.jsx containing the header and footer, and all the application view component stubs created, we can now create the router that will display each component as the navigation UI requests it. The router controls the whole application by determining what component to display based upon what navigation the user chooses. To implement the router, we import the router component into the App component, and wrap all of the App component's elements with the BrowserRouter component. We also import all of our view components.
 
+```javascript
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './play/play';
@@ -1824,10 +1826,12 @@ root.render(
     <div className='body bg-dark text-light'><!-- sub-elements here --></div>
   </BrowserRouter>
 );
+```
 Navigating routes
 
 We then we replace the a elements with the router's NavLink component. The anchor element's href attribute is replaced with the router's to attribute. The NavLink component prevents the browser's default navigation functionality and instead handles it by replacing the currently displayed component.
 
+```javascript
 <a className="nav-link" href="play.html">Play</a>
 
 // to
@@ -1862,10 +1866,12 @@ The nav element's code now looks like the following.
     </li>
   </menu>
 </nav>
+```
 Injecting the routed component
 
 The router definitions are then inserted so that the router knows what component to display for a given path. The router changes the rendered component; it appears in the place of the Routes element. The Routes element replaces the main element in the component HTML.
 
+```javascript
  <main>App components go here</main>
 
  // to
@@ -1877,6 +1883,8 @@ The router definitions are then inserted so that the router knows what component
   <Route path='/about' element={<About />} />
   <Route path='*' element={<NotFound />} />
 </Routes>
+```
+
 Notice that the * (default matcher) was added to handle the case where an unknown path is requested. We handle this by creating a component for a path that is not found. We place this component at the bottom of our src/app.jsx file.
 
 function NotFound() {
