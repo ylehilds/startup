@@ -23,7 +23,7 @@ npm install # make sure vite is installed so that we can bundle
 npm run build # build the React front end
 cp -rf dist build/public # move the React front end to the target distribution
 cp service/*.js build # move the back end service to the target distribution
-cp -r util build
+cp -r service/util build
 cp service/*.json build
 
 # Step 2
