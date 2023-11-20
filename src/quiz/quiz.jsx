@@ -225,7 +225,7 @@ export function Quiz() {
   }
 
   return (
-    <div main-quiz='true' container-fluid='true' text-center='true'>
+    <div className='main-quiz container-fluid text-center'>
       <div className="quiz-container">
         <div id="quiz">
           {questions.map((question, index) => (
@@ -234,9 +234,9 @@ export function Quiz() {
               <div className={`answers ${isSubmitted ? (userAnswers[index] === question.answerIndex ? 'correct' : 'incorrect') : ''}`}>
                 {question.options.map((option, i) => (
                   <label key={i}>
-                    <input type="radio" name={`question${index}`} value={i} onChange={() => handleAnswerChange(index, i)} />
-                    {option}
-                  </label>
+                  <input type="radio" name={`question${index}`} value={i} onChange={() => handleAnswerChange(index, i)} />
+                  {option}
+                </label>
                 ))}
               </div>
             </div>
@@ -249,12 +249,11 @@ export function Quiz() {
         </div>
       )}
       <div id="quizNavigation">
-        {currentSlide > 0 && <button onClick={() => setCurrentSlide(currentSlide - 1)}>Previous</button>}
-        {currentSlide < questions.length - 1 && <button onClick={() => setCurrentSlide(currentSlide + 1)}>Next</button>}
-        {currentSlide === questions.length - 1 && <button onClick={submitQuiz}>Submit</button>}
+        {currentSlide > 0 && <button className="btn btn-primary text-reset" onClick={() => setCurrentSlide(currentSlide - 1)}>Previous</button>}&nbsp;
+        {currentSlide < questions.length - 1 && <button  className="btn btn-primary text-reset" onClick={() => setCurrentSlide(currentSlide + 1)}>Next</button>}
+        {currentSlide === questions.length - 1 && <button className="btn btn-primary text-reset" onClick={submitQuiz}>Submit</button>}
         <div id="results"></div>
       </div>
-      <br />
       <br />
       <div id="players-actions">
         <br />
