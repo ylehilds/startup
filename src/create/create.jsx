@@ -63,7 +63,7 @@ export function Create() {
       body: JSON.stringify({ question, quizTitle, quizId, user }),
     });
     if (response.status === 201) {
-      // const res = await response.json()
+      const res = await response.json()
       console.log(response);
     } else {
       alert('Error creating quiz/question.');
