@@ -55,7 +55,7 @@ export function Dashboard() {
         <div key={quiz.quizId} className="quiz-item card mb-3">
           <h2 className="card-header">{quiz.title}</h2>
           <div className="card-body d-flex">
-            {user.id === quiz.creatorId && <button className="btn btn-primary me-2" onClick={() => window.location.href = `edit.html?quizId=${quiz.quizId}`}>Edit</button>}
+            {user.id === quiz.creatorId && <button className="btn btn-primary me-2" onClick={() => window.location.href = `/edit?quizId=${quiz.quizId}`}>Edit</button>}
             <button className="btn btn-success me-4" onClick={() => window.location.href = `/quiz?quizId=${quiz.quizId}`}>Take</button>
             {user.id === quiz.creatorId && <button className="btn btn-danger" onClick={() => deleteQuiz(quiz.quizId)}>Delete</button>}
           </div>
@@ -68,7 +68,7 @@ export function Dashboard() {
         <div key={quiz.quizId} className="quiz-item card mb-3">
           <h2 className="card-header">{quiz.title}</h2>
           <div className="card-body d-flex">
-            {user.id === quiz.creatorId && <button className="btn btn-primary me-2" onClick={() => window.location.href = `edit.html?quizId=${quiz.quizId}`}>Edit</button>}
+            {user.id === quiz.creatorId && <button className="btn btn-primary me-2" onClick={() => window.location.href = `/edit?quizId=${quiz.quizId}`}>Edit</button>}
             <button className="btn btn-success me-4" onClick={() => window.location.href = `/quiz?quizId=${quiz.quizId}`}>Take</button>
             {user.id === quiz.creatorId && <button className="btn btn-danger" onClick={() => deleteQuiz(quiz.quizId)}>Delete</button>}
           </div>
