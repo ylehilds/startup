@@ -245,6 +245,8 @@ export function Quiz() {
       </div>
       {isSubmitted && (
         <div className="results">
+          <br />
+          <br />
           {score} out of {questions.length}
         </div>
       )}
