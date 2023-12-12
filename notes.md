@@ -2137,8 +2137,6 @@ In this example, the documents with "cost" values greater than 10 and "name" val
 
 Storing user passwords securely is a critical aspect of web application security. Here are some best practices for storing user passwords in a database:
 
-Adding a file with .gitignore so that it won’t be recorded in git history and you would need to upload it yourself manually
-
 Hashing:
 Always hash passwords before storing them. Hashing is a one-way function that converts the password into a fixed-length string of characters, making it difficult for attackers to reverse the process and obtain the original password.
 Use a strong and adaptive hashing algorithm, such as bcrypt, Argon2, or scrypt. These algorithms are specifically designed for password hashing and include features to slow down brute-force and rainbow table attacks.
@@ -2158,10 +2156,10 @@ Encourage Strong Passwords:
 Encourage users to create strong, unique passwords. You can enforce password complexity requirements, but avoid overly strict rules that may lead users to choose weaker passwords.
 Remember that security is a multi-layered approach, and protecting user passwords is just one aspect of securing a web application. Additionally, consider implementing other security measures such as two-factor authentication (2FA) to enhance the overall security of user accounts.
 
-9. Assuming the following Node.js service code is executing with websockets, what will be logged to the console of the web browser?
+1. Assuming the following Node.js service code is executing with websockets, what will be logged to the console of the web browser?
 	TBD
 
-10. What is the WebSocket protocol used for?
+2.  What is the WebSocket protocol used for?
 
 
 The WebSocket protocol is a communication protocol that provides full-duplex communication channels over a single, long-lived connection. It is designed to be implemented in web browsers and web servers, enabling real-time, bidirectional communication between clients (such as web browsers) and servers. Here are some key points about the WebSocket protocol:
