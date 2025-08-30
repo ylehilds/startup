@@ -148,5 +148,49 @@ For this deliverable I converted the application over to use React.
 - **Router** - Routing between Login, About, Create, Dashboard, Edit, Quiz and Scores components, additional routing for a not found routing is also deployed.
 - **Hooks** - Used UseState to track changes in quiz app state in all components.
 
-[Notes link](notes.md)
+# Development Setup Guide
 
+## How to Run / Dev Setup
+### Service
+1. **Disable the auth middleware**  
+   In `startup/service/index.js`, comment out lines **90–102** where the `secureApiRouter` middleware is implemented.
+
+   > ⚠️ This middleware was functional under a certain domain name, but now it is not yet functional (likely due to domain/cookie handling), so it must be disabled for local development and OCI w/out the domain.
+
+2. **Navigate to the service directory**
+   ```bash
+   cd startup/service
+   ```
+
+3. **Install dependencies**
+   ```bash
+   npm install
+   ```
+   > ✅ Make sure you are using **Node.js v22**.
+
+4. **Start the service**
+   ```bash
+   node index.js
+   ```
+
+---
+
+#### Notes
+- When the `secureApiRouter` middleware is fixed, remove the comment and test authentication again.
+- Consider adding an environment flag (e.g., `NODE_ENV=development`) to bypass the middleware instead of manually commenting code.
+
+### Frontend
+1. **Navigate to the frontend directory**
+   ```bash
+   cd startup/src
+   ```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+   > ✅ Make sure you are using **Node.js v22**.
+3. **Start the frontend**
+   ```bash
+   npm run dev
+   ```
+[Notes link](notes.md)
