@@ -193,4 +193,10 @@ For this deliverable I converted the application over to use React.
    ```bash
    npm run dev
    ```
+
+## License & Author
+
+- **License:** MIT — see `LICENSE`
+- **Author:** Lehi Alcantara — https://www.lehi.dev — lehi@lehi.dev
+
 [Notes link](notes.md)
